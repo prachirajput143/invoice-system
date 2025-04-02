@@ -1,0 +1,124 @@
+<div class="invoice-container">
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <div class="logo">INVOICE PRO</div>
+    <ul class="nav-links">
+      <li><a routerLink="/dashboard">Home</a></li>
+      <li><a routerLink="/dashboard">Dashboard</a></li>
+      <li><a routerLink="/dashboard/analytics">Analytics</a></li>
+      <li><a routerLink="/dashboard/invoices">Invoices</a></li>
+      <li><a routerLink="/dashboard/edit">Edit</a></li>
+      <li><a routerLink="/dashboard/report">Report</a></li>
+    </ul>
+    <div class="user-section">
+      <input type="text" placeholder="Search..." class="search-bar">
+      <span class="theme-toggle">🌙</span>
+    </div>
+  </nav>
+
+  <h2>Create Invoice</h2>
+
+  <!-- Invoice Header -->
+  <div class="invoice-header">
+    <input type="text" placeholder="Invoice Id" class="invoice-input" readonly />
+    <select class="invoice-input">
+      <option>Please Select Status</option>
+      <option>Paid</option>
+      <option>Unpaid</option>
+    </select>
+    <input type="date" class="invoice-input" placeholder="Invoice Date" />
+    <input type="date" class="invoice-input" placeholder="Due Date" />
+  </div>
+
+  <!-- Customer Details -->
+  <div class="customer-details">
+    <h3>Customer Details</h3>
+    <input type="text" placeholder="Customer Name" class="invoice-input" />
+    <input type="email" placeholder="Customer Email" class="invoice-input" />
+    <input type="text" placeholder="Customer Contact No." class="invoice-input" />
+  </div>
+
+  <!-- Invoice Type Dropdown -->
+  <div class="invoice-type">
+    <h3>Invoice Type</h3>
+    <select class="invoice-input">
+      <option>Standard Invoice</option>
+      <option>Recurring Invoice</option>
+      <option>Service Invoice</option>
+      <option>Product Invoice</option>
+      <option>Proforma Invoice</option>
+    </select>
+  </div>
+
+  <!-- Invoice From/To Details -->
+  <div class="invoice-info">
+    <div class="invoice-from">
+      <h3>From:</h3>
+      <p>Garcia-Cameron and Sons</p>
+      <p>8554 Saunders Hill Apt. 583</p>
+      <p>(970) 992-3535</p>
+      <p>brandon07&#64;pierce.com</p>
+    </div>
+    <div class="invoice-to">
+      <h3>To:</h3>
+      <textarea placeholder="Enter recipient details..."></textarea>
+    </div>
+  </div>
+
+  <!-- Invoice Table -->
+  <table class="invoice-table">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Qty</th>
+        <th>Price</th>
+        <th>Total Amount</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td><input type="text" value="TV" /></td>
+        <td><input type="text" value="Smart LED TV" /></td>
+        <td><input type="number" value="1" min="1" /></td>
+        <td><input type="number" value="50" min="0" /></td>
+        <td>$50.00</td>
+        <td><button class="delete-btn">🗑</button></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Add Item Button -->
+  <button class="add-item">+ Add new item</button>
+
+  <!-- Invoice Summary -->
+  <div class="invoice-summary">
+    <label>Discount (%):</label>
+    <input type="number" value="0" min="0" class="discount-input" />
+    
+    <label>Taxes (%):</label>
+    <input type="number" value="0" min="0" class="tax-input" />
+
+    <p>Sub Total: <span id="subtotal">$50.00</span></p>
+    <p>Discount: <span id="discount">$0.00</span></p>
+    <p>Taxes: <span id="tax">$0.00</span></p>
+    <p>Grand Total: <span id="grand-total">$50.00</span></p>
+  </div>
+
+  <!-- Notes Section -->
+  <textarea placeholder="Note"></textarea>
+
+  <!-- Invoice Actions -->
+  <div class="invoice-actions">
+    <select class="currency-select">
+      <option>USD (US Dollar)</option>
+      <option>INR (Indian Rupee)</option>
+    </select>
+    <button class="preview-btn">Preview</button>
+    <button class="save-btn">Save</button>
+    <button class="send-btn">Create & Send</button>
+  </div>
+</div>
