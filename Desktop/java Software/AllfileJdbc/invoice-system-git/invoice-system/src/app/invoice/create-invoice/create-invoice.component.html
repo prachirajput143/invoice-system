@@ -1,0 +1,163 @@
+<div class="invoice-container">
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <div class="logo">INVOICE PRO</div>
+    <ul class="nav-links">
+      <li><a routerLink="/dashboard/home">Home</a></li>
+      <li><a routerLink="/dashboard">Dashboard</a></li>
+      <li><a routerLink="/dashboard/analytics">Analytics</a></li>
+      <li><a routerLink="/dashboard/invoice/create">Invoices</a></li>
+      <li><a routerLink="/dashboard/edit">Edit</a></li>
+      <li><a routerLink="/dashboard/report">Report</a></li>
+    </ul>
+    <div class="user-section">
+      <input type="text" placeholder="Search..." class="search-bar" />
+      <span class="theme-toggle">🌙</span>
+    </div>
+  </nav>
+
+  <h2>Create Invoice</h2>
+
+  <!-- Invoice Header -->
+  <div class="invoice-header">
+    <div class="center-container">
+      <div class="form-wrapper">
+        <select class="form-control" [(ngModel)]="selectedClientId" name="client">
+          <option value="">Select Client</option>
+          <option *ngFor="let client of clients" [value]="client.id">{{ client.firstName }}</option>
+        </select>
+      </div>
+
+      <div class="form-wrapper">
+        <select class="form-control" [(ngModel)]="selectedCompanyId" name="company">
+          <option value="">Select Company</option>
+          <option *ngFor="let company of companies" [value]="company.id">{{ company.name }}</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- Customer Details -->
+  <h3>Customer Details</h3>
+  <div class="customer-details">
+    <input type="text" placeholder="Customer Name" class="invoice-input" [(ngModel)]="customerName" name="customerName" />
+    <input type="email" placeholder="Customer Email" class="invoice-input" [(ngModel)]="customerEmail" name="customerEmail" />
+    <input type="text" placeholder="Customer Contact No." class="invoice-input" [(ngModel)]="customerContact" name="customerContact" />
+  </div>
+
+  <!-- Invoice Form -->
+  <form [formGroup]="invoiceForm">
+    <table>
+      <thead>
+        <tr>
+          <th>Category</th>
+          <th>Quantity</th>
+          <th>Price Per Unit</th>
+          <th>Subtotal</th>
+          <th>Discount (%)</th>
+          <th>Tax (%)</th>
+          <th>Paid Amount</th>
+          <th>Grand Total</th>
+          <th>Total</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody formArrayName="items">
+        <tr *ngFor="let item of items.controls; let i = index" [formGroupName]="i">
+          <td>
+            <select formControlName="category" (change)="updatePrice(i)">
+              <option value="">Select</option>
+              <option value="Services">Services</option>
+              <option value="Product">Product</option>
+              <option value="Audio">Audio</option>
+              <option value="Other">Other</option>
+            </select>
+          </td>
+          <td><input type="number" formControlName="quantity" (input)="calculateSubtotal(i)" /></td>
+          <td><input type="number" formControlName="price" (input)="calculateTotal(i)" /></td>
+          <td><input type="number" formControlName="subtotal" readonly /></td>
+          <td><input type="number" formControlName="discount" (input)="calculateTotal(i)" /></td>
+          <td><input type="number" formControlName="tax" (input)="calculateTotal(i)" /></td>
+          <td><input type="number" formControlName="paid" /></td>
+          <td><input type="number" formControlName="grandTotal" readonly /></td>
+          <td><input type="number" formControlName="total" readonly /></td>
+          <td>
+            <button type="button" (click)="removeItem(i)">🗑️</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <button type="button" (click)="addItem()">➕ Add New Item</button>
+  </form>
+
+  <!-- Invoice Summary -->
+  <div class="summary-box">
+    <h4>Invoice Summary</h4>
+    <p><strong>Subtotal:</strong> ₹{{ subTotal }}</p>
+    <p><strong>Tax Amount:</strong> ₹{{ tax }}</p>
+    <p><strong>Grand Total:</strong> ₹{{ grandTotal }}</p>
+    <p><strong>Balance:</strong> ₹{{ balance }}</p>
+  </div>
+
+  <!-- Notes -->
+  <textarea [formControl]="invoiceForm.get('note')" placeholder="Note"></textarea>
+
+  <!-- Payment Section -->
+  <div class="payment-section">
+    <h3>Payment Details</h3>
+
+    <div class="payment-form">
+      <select class="form-control" [(ngModel)]="paymentForm.paymentName" name="paymentName">
+        <option value="">Select Payment Method</option>
+        <option value="Cash">CASH</option>
+        <option value="Cheque">CHEQUE</option>
+        <option value="Card">CARD</option>
+        <option value="bankTransfer">BANK TRANSFER</option>
+        <option value="UPI">UPI</option>
+        <option value="Other">Other</option>
+      </select>
+
+      <input type="text" class="form-control" [(ngModel)]="paymentForm.paymentDetails" name="paymentDetails" placeholder="Payment Details" />
+      <input type="number" class="form-control" [(ngModel)]="paymentForm.paymentAmount" name="paymentAmount" placeholder="Amount" />
+      <input type="date" class="form-control" [(ngModel)]="paymentForm.paymentDate" name="paymentDate" />
+
+      <button type="button" (click)="addPayment()" class="btn-add">➕ Add</button>
+    </div>
+
+    <table class="payment-table">
+      <thead>
+        <tr>
+          <th>Payment Method</th>
+          <th>Notes</th>
+          <th>Amount</th>
+          <th>Payment Date</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let payment of payments; let i = index">
+          <td>{{ payment.paymentMethod }}</td>
+          <td>{{ payment.notes }}</td>
+          <td>{{ payment.amount }}</td>
+          <td>{{ payment.paymentDate }}</td>
+          <td>
+            <button (click)="removePayment(i)" class="btn-remove">❌</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Invoice Actions -->
+    <div class="invoice-actions">
+      <button class="btn-save" (click)="saveInvoice()">💾 Save</button>
+      <button (click)="createAndDownloadPDF()" class="btn btn-primary">📄 Create & Save</button>
+    </div>
+
+    <!-- PDF Modal -->
+    <app-pdf-preview-modal
+      [pdfUrl]="pdfPreviewUrl"
+      [showModal]="isPdfModalOpen"
+      (close)="isPdfModalOpen = false">
+    </app-pdf-preview-modal>
+  </div>
+</div>

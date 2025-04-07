@@ -1,0 +1,65 @@
+<div class="analytics-container">
+  <!--   Navbar -->
+  <nav class="navbar">
+    <div class="logo">INVOICE PRO</div>
+    <ul class="nav-links">
+      <li><a routerLink="/dashboard">Home</a></li>
+      <li><a routerLink="/dashboard">Dashboard</a></li>
+      <li><a routerLink="/dashboard/analytics">Analytics</a></li>
+      <li><a routerLink="/dashboard/invoice/create">Invoices</a></li>
+      <li><a routerLink="/dashboard/edit">Edit</a></li>
+      <li><a routerLink="/dashboard/report">Report</a></li>
+  </ul>
+    <div class="user-section">
+      <input type="text" placeholder="Search..." class="search-bar">
+      <span class="theme-toggle">🌙</span>
+    </div>
+  </nav>
+
+  <!-- 🔹 Summary Cards -->
+  <div class="summary-cards">
+    <div class="card"><h4>Total Invoices</h4><p>1,200</p></div>
+    <div class="card"><h4>Paid</h4><p>950</p></div>
+    <div class="card"><h4>Unpaid</h4><p>150</p></div>
+    <div class="card"><h4>Overdue</h4><p>100</p></div>
+  </div>
+  <div class="charts-container">
+
+    <!--  Shipments Chart -->
+    <div class="chart-card">
+      <h3>Shipments</h3>
+      <div class="chart-filters">
+        <button [class.active]="selectedShipmentFilter === 'All'" (click)="setShipmentFilter('All')">All</button>
+        <button [class.active]="selectedShipmentFilter === 'On Delivery'" (click)="setShipmentFilter('On Delivery')">On Delivery</button>
+        <button [class.active]="selectedShipmentFilter === 'Delivered'" (click)="setShipmentFilter('Delivered')">Delivered</button>
+        <button [class.active]="selectedShipmentFilter === 'Returned'" (click)="setShipmentFilter('Returned')">Returned</button>
+      </div>
+      <canvas baseChart
+        [datasets]="shipmentsData"
+        [labels]="months"
+        [options]="chartOptions"
+        [legend]="true"
+        chartType="bar">
+      </canvas>
+    </div>
+  
+    <!--  Sales Chart -->
+    <div class="chart-card">
+      <h3>Sales</h3>
+      <div class="chart-filters">
+        <button [class.active]="selectedSalesFilter === 'All'" (click)="setSalesFilter('All')">All</button>
+        <button [class.active]="selectedSalesFilter === 'Appliances'" (click)="setSalesFilter('Appliances')">Appliances</button>
+        <button [class.active]="selectedSalesFilter === 'Accessories'" (click)="setSalesFilter('Accessories')">Accessories</button>
+        <button [class.active]="selectedSalesFilter === 'Tools'" (click)="setSalesFilter('Tools')">Tools</button>
+      </div>
+      <canvas baseChart
+        [datasets]="salesData"
+        [labels]="months"
+        [options]="chartOptions"
+        [legend]="true"
+        chartType="line">
+      </canvas>
+    </div>
+  </div>
+</div>
+<app-invoice-tracking></app-invoice-tracking>  

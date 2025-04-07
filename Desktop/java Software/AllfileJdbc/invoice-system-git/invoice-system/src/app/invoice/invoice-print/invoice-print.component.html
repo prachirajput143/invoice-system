@@ -1,0 +1,29 @@
+<div class="invoice-print-container">
+    <h2>Invoice Preview</h2>
+    <p><strong>Invoice ID:</strong> {{ invoiceData?.invoiceId }}</p>
+    <p><strong>Customer:</strong> {{ invoiceData?.customerName }}</p>
+    <p><strong>Email:</strong> {{ invoiceData?.customerEmail }}</p>
+    <p><strong>Contact:</strong> {{ invoiceData?.customerContact }}</p>
+    <p><strong>Date:</strong> {{ invoiceData?.invoiceDate }}</p>
+    
+    <h3>Items</h3>
+    <table>
+      <tr>
+        <th>Item</th>
+        <th>Quantity</th>
+        <th>Price</th>
+        <th>Total</th>
+      </tr>
+      <tr *ngFor="let item of invoiceData?.items">
+        <td>{{ item.name }}</td>
+        <td>{{ item.quantity }}</td>
+        <td>{{ item.price }}</td>
+        <td>{{ item.total }}</td>
+      </tr>
+    </table>
+  
+    <h3>Total: {{ invoiceData?.grandTotal }}</h3>
+  
+    <button class="btn-print" (click)="printInvoice()">Print</button>
+  </div>
+  
