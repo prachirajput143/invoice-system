@@ -1,0 +1,12 @@
+<div class="pdf-modal-backdrop" *ngIf="showModal">
+    <div class="pdf-modal-content">
+      <h3>📄 PDF Preview</h3>
+      <iframe [src]="pdfUrl | safeUrl" frameborder="0"></iframe>
+  
+      <div class="modal-actions">
+        <button class="btn btn-success" (click)="downloadPDF()">⬇️ Download</button>
+        <button class="btn btn-danger" (click)="closeModal()">❌ Cancel</button>
+      </div>
+    </div>
+  </div>
+  
