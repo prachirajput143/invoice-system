@@ -6,7 +6,7 @@
             <li><a routerLink="/dashboard">Home</a></li>
             <li><a routerLink="/dashboard">Dashboard</a></li>
             <li><a routerLink="/dashboard/analytics">Analytics</a></li>
-            <li><a routerLink="/dashboard/invoices/create">Invoices</a></li>
+            <li><a routerLink="/dashboard/invoice/create">Invoices</a></li>
             <li><a routerLink="/dashboard/edit">Edit</a></li>
             <li><a routerLink="/dashboard/report">Report</a></li>
         </ul>
@@ -15,9 +15,9 @@
             <span class="theme-toggle">🌙</span>
         </div>
     </nav>
-
     <!-- Router Outlet to Load Child Components -->
     <div class="dashboard-content">
       <router-outlet></router-outlet>
     </div>
   </div>
+<app-invoice-dashboard></app-invoice-dashboard>

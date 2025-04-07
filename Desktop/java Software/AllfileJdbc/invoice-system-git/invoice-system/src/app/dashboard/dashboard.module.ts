@@ -5,6 +5,8 @@ import { DashboardComponent } from './dashboard.component';
 import { InvoiceTrackingComponent } from './invoice-tracking/invoice-tracking.component';
 import { NgChartsModule } from 'ng2-charts';  
 import { AnalyticsComponent } from './analytics-index/analytics.component';
+import { HttpClientModule } from '@angular/common/http';
+
 
 @NgModule({
   declarations: [
@@ -15,7 +17,8 @@ import { AnalyticsComponent } from './analytics-index/analytics.component';
   imports: [
     CommonModule,
     DashboardRoutingModule,
-    NgChartsModule
+    NgChartsModule,
+    HttpClientModule
   ]
 })
 export class DashboardModule { }
