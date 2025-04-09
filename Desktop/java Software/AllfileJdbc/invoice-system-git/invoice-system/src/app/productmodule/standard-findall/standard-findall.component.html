@@ -1,0 +1,42 @@
+<div class="invoice-container">
+    <h2>All Standard Invoices</h2>
+  
+    <div class="filter-options">
+      <label for="page">Page Number:</label>
+      <input type="number" id="page" [(ngModel)]="page" />
+  
+      <label for="size">Page Size:</label>
+      <input type="number" id="size" [(ngModel)]="size" />
+  
+      <button (click)="findAllInvoices()" class="load-btn">🔄 Load Invoices</button>
+    </div>
+  
+    <div class="pagination-buttons">
+      <button (click)="previousPage()" [disabled]="page == 1" class="nav-btn disabled-btn">⬅ Previous</button>
+      <button (click)="nextPage()" [disabled]="(page * size) >= totalRecords" class="nav-btn">Next ➡</button>
+    </div>
+  
+    <table *ngIf="standard.length > 0" class="invoice-table">
+      <thead>
+        <tr>
+          <th>Invoice ID</th>
+          <th>Invoice Number</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let invoice of standard">
+          <td>{{ invoice.id }}</td>
+          <td>{{ invoice.invoiceNumber }}</td>
+          <td>{{ invoice.status }}</td>
+          <td>
+            <button (click)="deleteInvoice(invoice.id)" class="delete-btn">🗑 Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <p class="no-data" *ngIf="standard.length === 0">⚠ No service invoices found.</p>
+  </div>
+  

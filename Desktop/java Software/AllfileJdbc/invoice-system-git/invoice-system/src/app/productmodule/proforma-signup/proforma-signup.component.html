@@ -1,0 +1,44 @@
+<div class="invoice-form-container">
+    <h2>Create Proforma Invoice</h2>
+  
+    <form [formGroup]="invoiceForm" (ngSubmit)="saveInvoice()">
+  
+     <!-- Client Dropdown -->
+     <label for="client">Select Client:</label>
+
+<select formControlName="clientId" class="form-control">
+    <option value="">-- Select Client --</option>
+    <option *ngFor="let client of clients" [value]="client.id">
+      {{ client.firstName }} {{ client.lastName }} {{ client.id }}
+    </option>
+  </select>
+  <label for="client">Select Company:</label>
+
+  <select formControlName="companyId" class="form-control" *ngIf="companies?.length">
+    <option value="">-- Select Company --</option>
+    <option *ngFor="let company of companies" [value]="company.id">
+      {{ company.name }}  {{ company.id }}
+
+    </option>
+  </select>
+
+  
+      <label>Status:</label>
+      <input type="text" formControlName="status">
+  
+      <label>Payment Instructions</label>
+      <input type="date" formControlName="paymentInstructions">
+  
+      <label>Total Amount:</label>
+      <input type="number" formControlName="totalAmount">
+  
+      <label>Validity Period:</label>
+      <input type="number" formControlName="validityPeriod">
+  
+           <button type="submit" [disabled]="isLoading">💾 Save Invoice</button>
+  
+      <p *ngIf="successMessage" style="color: green;">{{ successMessage }}</p>
+      <p *ngIf="errorMessage" style="color: red;">{{ errorMessage }}</p>
+    </form>
+  </div>
+  

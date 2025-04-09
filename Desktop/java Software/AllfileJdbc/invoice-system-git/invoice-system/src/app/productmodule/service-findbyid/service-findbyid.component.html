@@ -1,0 +1,24 @@
+<div class="invoice-search-container">
+    <h2>Find Invoice By ID</h2>
+  
+    <div class="search-box">
+      <input type="number" [(ngModel)]="searchId" placeholder="Enter Invoice ID">
+      <button (click)="findInvoiceById()">🔍 Search</button>
+    </div>
+  
+    <div class="invoice-details" *ngIf="service">
+      <h3>Invoice Details</h3>
+      <p><strong>ID:</strong> {{ service.id }}</p>
+      <p><strong>Invoice Number:</strong> {{ service.invoiceNumber }}</p>
+      <p><strong>Grand Total:</strong> ₹{{ service.grandTotal }}</p>
+      <p><strong>Notes:</strong> {{ service.notes }}</p>
+      <p><strong>Payment Term:</strong> {{ service.paymentTerm }}</p>
+      <p><strong>Status:</strong> {{ service.status }}</p>
+      <p><strong>Sub Total:</strong> ₹{{ service.subTotal }}</p>
+      <p><strong>Tax:</strong> ₹{{ service.tax }}</p>
+      <p><strong>PDF Path:</strong>
+        <a [href]="service.pdfPath" target="_blank">Download PDF</a>
+      </p>
+    </div>
+  </div>
+  

@@ -1,0 +1,27 @@
+<div class="invoice-search-container">
+    <h2>Find Standard Invoice By ID</h2>
+  
+    <div class="invoice-search-wrapper">
+        <div class="invoice-search-box">
+          <div class="search-box">
+            <input type="number" [(ngModel)]="searchId" placeholder="Enter Invoice ID">
+            <button (click)="findInvoiceById()">🔍 Search</button>
+          </div>
+        </div>
+      </div>
+
+    <div class="invoice-details" *ngIf="proformainvoice">
+      <h3>Standard Invoice Details</h3>
+      <p><strong>ID:</strong> {{ proformainvoice.id }}</p>
+      <p><strong>Invoice Number:</strong> {{ proformainvoice.invoiceNumber }}</p>
+      <p><strong>Payment Instructions:</strong> ₹{{ proformainvoice.paymentInstructions }}</p>
+      <p><strong>Status:</strong> ₹{{ proformainvoice.status }}</p>
+      <p><strong>Total Amount:</strong> ₹{{ proformainvoice.totalAmount }}</p>
+      <p><strong>Validity Period:</strong> ₹{{ proformainvoice.validityPeriod }}</p>
+
+      <p><strong>PDF Path:</strong>
+        <a [href]="proformainvoice.pdfPath" target="_blank">Download PDF</a>
+      </p>
+    </div>
+  </div>
+  

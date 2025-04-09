@@ -1,0 +1,9 @@
+<form (ngSubmit)="updateInvoice()">
+  <label>Buyer Details:</label>
+  <input type="text" [(ngModel)]="invoiceData.buyerDetails" name="buyerDetails" required />
+
+  <label>Order Number:</label>
+  <input type="text" [(ngModel)]="invoiceData.orderNumber" name="orderNumber" required />
+
+  <button type="submit">Update Invoice</button>
+</form>

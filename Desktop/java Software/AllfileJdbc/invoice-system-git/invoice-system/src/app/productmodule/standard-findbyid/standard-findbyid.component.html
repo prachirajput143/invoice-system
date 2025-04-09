@@ -1,0 +1,32 @@
+<div class="invoice-search-container">
+    <h2>Find Standard Invoice By ID</h2>
+  
+    <div class="invoice-search-wrapper">
+        <div class="invoice-search-box">
+          <h2>Find Invoice By ID</h2>
+          <div class="search-box">
+            <input type="number" [(ngModel)]="searchId" placeholder="Enter Invoice ID">
+            <button (click)="findInvoiceById()">🔍 Search</button>
+          </div>
+        </div>
+      </div>
+      
+  
+    <div class="invoice-details" *ngIf="standardinvoice">
+      <h3>Standard Invoice Details</h3>
+      <p><strong>ID:</strong> {{ standardinvoice.id }}</p>
+      <p><strong>Invoice Number:</strong> {{ standardinvoice.invoiceNumber }}</p>
+      <p><strong>Sub Total:</strong> ₹{{ standardinvoice.subtotal }}</p>
+      <p><strong>Discount:</strong> ₹{{ standardinvoice.discount }}</p>
+      <p><strong>Tax:</strong> ₹{{ standardinvoice.tax }}</p>
+      <p><strong>Grand Total:</strong> ₹{{ standardinvoice.grandTotal }}</p>
+      <p><strong>Payment Term:</strong> {{ standardinvoice.paymentTerm }}</p>
+      <p><strong>Recurring Frequency:</strong> {{ standardinvoice.recurringFrequency }}</p>
+      <p><strong>Status:</strong> {{ standardinvoice.status }}</p>
+      <p><strong>Notes:</strong> {{ standardinvoice.notes }}</p>
+      <p><strong>PDF Path:</strong>
+        <a [href]="standardinvoice.pdfPath" target="_blank">Download PDF</a>
+      </p>
+    </div>
+  </div>
+  

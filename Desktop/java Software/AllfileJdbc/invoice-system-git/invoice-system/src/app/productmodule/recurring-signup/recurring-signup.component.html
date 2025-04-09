@@ -1,0 +1,46 @@
+<div class="invoice-form-container">
+    <h2>Create Recurring Invoice</h2>
+  
+    <form [formGroup]="invoiceForm" (ngSubmit)="saveInvoice()">
+  
+ <!-- ✅ Fixed Client Dropdown -->
+<label for="client">Select Client:</label>
+<select formControlName="clientId" class="form-control">
+  <option [ngValue]="null">-- Select Client --</option>
+  <option *ngFor="let client of clients" [ngValue]="client.id">
+    {{ client.firstName }} {{ client.lastName }}
+  </option>
+</select>
+
+<!-- ✅ Fixed Company Dropdown -->
+<label for="company">Select Company:</label>
+<select formControlName="companyId" class="form-control">
+  <option [ngValue]="null">-- Select Company --</option>
+  <option *ngFor="let company of companies" [ngValue]="company.id">
+    {{ company.name }}
+  </option>
+</select>
+
+  
+
+<label>End Date:</label>
+<input type="date" formControlName="endDate">
+
+<label>Payment Term:</label>
+<input type="text" formControlName="paymentTerm">
+
+<label>Total Payable:</label>
+<input type="number" formControlName="totalPayable">
+
+      
+<label>Auto Payment Setup:</label>
+<input type="checkbox" formControlName="autoPaymentSetup">
+
+  
+      <button type="submit" [disabled]="isLoading">💾 Save Invoice</button>
+  
+      <p *ngIf="successMessage" style="color: green;">{{ successMessage }}</p>
+      <p *ngIf="errorMessage" style="color: red;">{{ errorMessage }}</p>
+    </form>
+  </div>
+  

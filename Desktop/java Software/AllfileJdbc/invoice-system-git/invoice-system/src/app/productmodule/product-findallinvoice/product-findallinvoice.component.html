@@ -1,0 +1,43 @@
+<div class="invoice-container">
+  <h2>All Invoices</h2>
+
+  <div class="filter-options">
+      <label for="page">Page Number:</label>
+      <input type="number" id="page" [(ngModel)]="page">
+
+      <label for="size">Page Size:</label>
+      <input type="number" id="size" [(ngModel)]="size">
+
+      <button (click)="findAllInvoices()">🔄 Load Invoices</button>
+  </div>
+
+  <div class="pagination-buttons">
+      <button (click)="previousPage()" [disabled]="page == 1">⬅ Previous</button>
+      <button (click)="nextPage()" [disabled]="(page * size) >= totalRecords">Next ➡</button>
+  </div>
+
+  <table *ngIf="invoices.length > 0">
+      <thead>
+          <tr>
+              <th>Invoice ID</th>
+              <th>Buyer Details</th>
+              <th>Order Number</th>
+              <th>Actions</th> <!-- ✅ Renamed for better clarity -->
+          </tr>
+      </thead>
+      <tbody>
+          <tr *ngFor="let invoice of invoices">
+              <td>{{ invoice.id }}</td>
+              <td>{{ invoice.buyerDetails }}</td>
+              <td>{{ invoice.orderNumber }}</td>
+              <td> 
+                  <!-- ✅ Corrected: Removed Extra <td> -->
+                    <button (click)="findById(invoice.id)" class="btn btn-primary">Update</button>
+                    <button (click)="deleteInvoice(invoice.id)" class="delete-btn">🗑 Delete</button>
+              </td>
+          </tr>
+      </tbody>
+  </table>
+
+  <p class="no-data" *ngIf="invoices.length == 0">⚠ No invoices found.</p>
+</div>
