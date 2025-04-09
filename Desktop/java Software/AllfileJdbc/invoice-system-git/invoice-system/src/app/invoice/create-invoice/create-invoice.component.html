@@ -107,7 +107,7 @@
     <h3>Payment Details</h3>
 
     <div class="payment-form">
-      <select class="form-control" [(ngModel)]="paymentForm.paymentName" name="paymentName">
+      <select class="form-control" [(ngModel)]="paymentForm.paymentName" name="paymentName" placeholder="Select Payment Method">
         <option value="">Select Payment Method</option>
         <option value="Cash">CASH</option>
         <option value="Cheque">CHEQUE</option>
@@ -149,8 +149,11 @@
 
     <!-- Invoice Actions -->
     <div class="invoice-actions">
-      <button class="btn-save" (click)="saveInvoice()">💾 Save</button>
-      <button (click)="createAndDownloadPDF()" class="btn btn-primary">📄 Create & Save</button>
+      <button class="print-btn" (click)="printPDF(pdfPreviewUrl)">
+        🖨️ Print Invoice
+      </button>
+  
+      <button class="btn btn-primary" (click)="saveInvoice()"> Create & Save</button>
     </div>
 
     <!-- PDF Modal -->

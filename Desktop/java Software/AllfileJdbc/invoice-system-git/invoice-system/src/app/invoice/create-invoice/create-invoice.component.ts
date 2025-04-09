@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
 import { InvoiceService } from '../service/invoice.service';
 import { ClientService } from '../service/client.service';
 import { CompanyService } from '../service/company.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+
 
 @Component({
   selector: 'app-create-invoice',
@@ -50,7 +52,8 @@ export class CreateInvoiceComponent{
     private fb: FormBuilder,
     private invoiceService: InvoiceService,
     private clientService: ClientService,
-    private companyService: CompanyService
+    private companyService: CompanyService,
+    private snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
@@ -79,6 +82,8 @@ export class CreateInvoiceComponent{
   }
 
   addItem(): void {
+    const index = this.items.length;
+  
     const itemGroup = this.fb.group({
       category: ['', Validators.required],
       quantity: [1, [Validators.required, Validators.min(1)]],
@@ -90,10 +95,27 @@ export class CreateInvoiceComponent{
       tax: [0],
       total: [0]
     });
-
+  
+    // Push first, so index remains valid
     this.items.push(itemGroup);
+  
+    // Real-time calculation triggers
+    itemGroup.get('quantity')?.valueChanges.subscribe(() => {
+      this.calculateSubtotal(index);
+    });
+  
+    itemGroup.get('price')?.valueChanges.subscribe(() => {
+      this.calculateSubtotal(index);
+    });
+  
+    itemGroup.get('discount')?.valueChanges.subscribe(() => {
+      this.calculateTotal(index);
+    });
+  
+    itemGroup.get('tax')?.valueChanges.subscribe(() => {
+      this.calculateTotal(index);
+    });
   }
-
   removeItem(index: number): void {
     this.items.removeAt(index);
     this.calculateInvoiceSummary();
@@ -171,7 +193,7 @@ export class CreateInvoiceComponent{
 
   addPayment(): void {
     if (this.paymentForm.invalid) return;
-
+  
     const payment = this.paymentForm.value;
     this.payments.push({
       paymentMethod: payment.paymentMethod,
@@ -179,15 +201,16 @@ export class CreateInvoiceComponent{
       amount: payment.paymentAmount,
       paymentDate: payment.paymentDate
     });
-
+  
     this.paymentForm.reset();
     this.calculateInvoiceSummary();
   }
-
+  
   removePayment(index: number): void {
     this.payments.splice(index, 1);
     this.calculateInvoiceSummary();
   }
+  
 
   saveInvoice(): void {
     const payload = {
@@ -206,35 +229,48 @@ export class CreateInvoiceComponent{
       customerName: this.customerName,
       customerEmail: this.customerEmail,
       customerPhone: this.customerPhone,
-      paymentStatus: '', // Optional logic
+      paymentStatus: '', 
       productCode: '',
       category: ''
     };
-
     this.invoiceService.createInvoice(payload).subscribe({
-      next: res => {
-        this.pdfPreviewUrl = res.pdfUrl;
-        this.isPdfModalOpen = true;
-        alert('Invoice & Payment saved successfully');
-      },
-      error: err => {
-        console.error('Error saving invoice:', err);
-        alert('Failed to save invoice');
-      }
+      next: (res) => {
+        if (res?.data?.pdfUrl) {
+          const pdfUrl = res.data.pdfUrl;
+          const invoiceNumber = res.data.invoice?.invoiceNumber || 'invoice';
+          const filename = `invoice-${invoiceNumber}.pdf`;
+      
+          this.downloadPDF(pdfUrl, filename);
+          this.printPDF(pdfUrl);
+      
+          //  Show success toast here
+          this.snackBar.open(' Invoice saved successfully!', 'Close', {
+            duration: 3000,
+            verticalPosition: 'top'
+          });
+        } else {
+          console.error('PDF URL not found in response.');
+        }
+      },      
     });
   }
-
-  createAndDownloadPDF(): void {
-    const payload = {
-      clientId: this.selectedClientId,
-      companyId: this.selectedCompanyId,
-      items: this.invoiceForm.value.items,
-      payments: this.payments
-    };
-
-    this.invoiceService.generatePDF(payload).subscribe(res => {
-      this.pdfPreviewUrl = res.pdfUrl;
-      this.isPdfModalOpen = true;
-    });
+  downloadPDF(pdfUrl: string, filename: string): void {
+    const link = document.createElement('a');
+    link.href = pdfUrl;
+    link.download = filename;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   }
-}
+  
+  // PDF Print Logic
+  printPDF(pdfUrl: string): void {
+    const printWindow = window.open(pdfUrl, '_blank');
+    if (printWindow) {
+      printWindow.focus();
+      printWindow.print();
+    } else {
+      console.error('Failed to open print window.');
+    }
+  }
+}  

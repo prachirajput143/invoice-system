@@ -17,10 +17,10 @@ export class InvoiceService {
     return this.http.post(this.urlService.create,invoice);
   }
 
-  generatePDF(payload: any): Observable<any> {
-    // Add correct endpoint here, example:
-    return this.http.post(`${this.urlService.baseUrl}/invoices/generate-pdf`, payload);
-  } 
+  downloadFile(fileUrl: string): Observable<Blob> {
+    return this.http.get(fileUrl, { responseType: 'blob' });
+  }
+  
   getAllClients(page: number = 0, size: number = 10): Observable<any> {
     const url = `${this.clientUrl.GET_ALL_CLIENTS}?page=${page}&size=${size}`;
     return this.http.get(url);

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="3.0" xmlns="https://jakarta.ee/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence https://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd">
+	<persistence-unit name="invoice-managment">
+		<class>com.amstech.invoice.managment.entity.Analytic</class>
+		<class>com.amstech.invoice.managment.entity.BusinessType</class>
+		<class>com.amstech.invoice.managment.entity.CashFlow</class>
+		<class>com.amstech.invoice.managment.entity.Category</class>
+		<class>com.amstech.invoice.managment.entity.City</class>
+		<class>com.amstech.invoice.managment.entity.Client</class>
+		<class>com.amstech.invoice.managment.entity.Company</class>
+		<class>com.amstech.invoice.managment.entity.Country</class>
+		<class>com.amstech.invoice.managment.entity.Currency</class>
+		<class>com.amstech.invoice.managment.entity.Dashboard</class>
+		<class>com.amstech.invoice.managment.entity.EmailLog</class>
+		<class>com.amstech.invoice.managment.entity.Expens</class>
+		<class>com.amstech.invoice.managment.entity.GenerateInvoice</class>
+		<class>com.amstech.invoice.managment.entity.Income</class>
+		<class>com.amstech.invoice.managment.entity.Invoice</class>
+		<class>com.amstech.invoice.managment.entity.InvoiceItem</class>
+		<class>com.amstech.invoice.managment.entity.InvoiceLog</class>
+		<class>com.amstech.invoice.managment.entity.InvoiceNotification</class>
+		<class>com.amstech.invoice.managment.entity.InvoiceType</class>
+		<class>com.amstech.invoice.managment.entity.Notification</class>
+		<class>com.amstech.invoice.managment.entity.Payment</class>
+		<class>com.amstech.invoice.managment.entity.ProductInvoiceItem</class>
+		<class>com.amstech.invoice.managment.entity.ProductInvoice</class>
+		<class>com.amstech.invoice.managment.entity.ProformaInvoiceItem</class>
+		<class>com.amstech.invoice.managment.entity.ProformaInvoice</class>
+		<class>com.amstech.invoice.managment.entity.RecurringInvoiceItem</class>
+		<class>com.amstech.invoice.managment.entity.RecurringInvoicePayment</class>
+		<class>com.amstech.invoice.managment.entity.RecurringInvoice</class>
+		<class>com.amstech.invoice.managment.entity.RecurringService</class>
+		<class>com.amstech.invoice.managment.entity.Report</class>
+		<class>com.amstech.invoice.managment.entity.SalesInvoiceItem</class>
+		<class>com.amstech.invoice.managment.entity.SalesInvoice</class>
+		<class>com.amstech.invoice.managment.entity.Saving</class>
+		<class>com.amstech.invoice.managment.entity.ServiceDetail</class>
+		<class>com.amstech.invoice.managment.entity.ServiceInvoice</class>
+		<class>com.amstech.invoice.managment.entity.StandardInvoice</class>
+		<class>com.amstech.invoice.managment.entity.State</class>
+		<class>com.amstech.invoice.managment.entity.TaxDetail</class>
+		<class>com.amstech.invoice.managment.entity.Transaction</class>
+	</persistence-unit>
+</persistence>
