@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 
 export const routes: Routes = [
+
     { path: '', redirectTo: 'product', pathMatch: 'full' },
   
     { path: 'product', loadChildren: () => import('./productmodule/product.module').then(m => m.ProductModule) },
@@ -12,3 +13,14 @@ export const routes: Routes = [
     { path: '**', redirectTo: 'product' }
   ];
   
+
+  { 
+    path: 'dashboard', 
+    loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule)
+  },
+  { 
+    path: 'invoice', 
+    loadChildren: () => import('./invoice/invoice.module').then(m => m.InvoiceModule) 
+  } 
+];
+

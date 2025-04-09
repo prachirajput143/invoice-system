@@ -1,0 +1,63 @@
+.analytics-container {
+    font-family: 'Poppins', sans-serif;
+    padding: 20px;
+    background: #f5f6fa;
+  }
+  
+  /* 🔹 Navbar Styling */
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: white;
+    padding: 15px 25px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .logo {
+    font-size: 22px;
+    font-weight: 700;
+    color: #6a5acd;
+  }
+  
+  .nav-links {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 0;
+  }
+  
+  .nav-links li {
+    font-size: 18px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: color 0.3s;
+  }
+  
+  .nav-links li:hover {
+    color: #6a5acd;
+  }
+  
+  .user-section {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+  
+  /* 🔹 Search Bar */
+  .search-bar {
+    padding: 8px 12px;
+    width: 250px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    outline: none;
+  }
+  
+  /* 🔹 Theme Toggle */
+  .theme-toggle {
+    cursor: pointer;
+    font-size: 20px;
+  }
+  
