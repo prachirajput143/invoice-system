@@ -1,0 +1,65 @@
+<div class="invoice-form-container">
+    <h2>Create Standard Invoice</h2>
+  
+    <form [formGroup]="invoiceForm" (ngSubmit)="saveInvoice()">
+  
+     <!-- Client Dropdown -->
+     <label for="client">Select Client:</label>
+
+<select formControlName="clientId" class="form-control">
+    <option value="">-- Select Client --</option>
+    <option *ngFor="let client of clients" [value]="client.id">
+      {{ client.firstName }} {{ client.lastName }} {{ client.id }}
+    </option>
+  </select>
+  <label for="client">Select Company:</label>
+
+  <select formControlName="companyId" class="form-control" *ngIf="companies?.length">
+    <option value="">-- Select Company --</option>
+    <option *ngFor="let company of companies" [value]="company.id">
+      {{ company.name }}  {{ company.id }}
+
+    </option>
+  </select>
+  
+  
+      <label>Status:</label>
+      <input type="text" formControlName="status">
+  
+      <label>Due Date:</label>
+      <input type="date" formControlName="dueDate">
+  
+      <label>Subtotal:</label>
+      <input type="number" formControlName="subtotal">
+  
+      <label>Tax:</label>
+      <input type="number" formControlName="tax">
+  
+      <label>Discount:</label>
+      <input type="number" formControlName="discount">
+  
+      <label>Grand Total:</label>
+      <input type="number" formControlName="grandTotal">
+
+      <label>Payment Term:</label>
+      <input type="text" formControlName="paymentTerm">
+  
+      <label>Notes:</label>
+      <textarea formControlName="notes"></textarea>
+  
+      <label>Recurring Frequency:</label>
+      <input type="text" formControlName="recurringFrequency">
+  
+      <label>Is Recurring:</label>
+      <input type="checkbox" formControlName="isRecurring">
+  
+      <label>Send Email (0/1):</label>
+      <input type="number" formControlName="sendEmail" min="0" max="1">
+  
+      <button type="submit" [disabled]="isLoading">💾 Save Invoice</button>
+  
+      <p *ngIf="successMessage" style="color: green;">{{ successMessage }}</p>
+      <p *ngIf="errorMessage" style="color: red;">{{ errorMessage }}</p>
+    </form>
+  </div>
+  

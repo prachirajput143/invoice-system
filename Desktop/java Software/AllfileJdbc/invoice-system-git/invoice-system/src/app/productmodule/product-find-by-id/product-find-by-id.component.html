@@ -1,0 +1,19 @@
+<div class="invoice-search-container">
+    <h2>Find Invoice By ID</h2>
+  
+    <div class="search-box">
+      <input type="number" [(ngModel)]="searchId" placeholder="Enter Invoice ID">
+      <button (click)="findInvoiceById()">🔍 Search</button>
+    </div>
+  
+    <div class="invoice-details" *ngIf="product">
+      <h3>Invoice Details</h3>
+      <p><strong>ID:</strong> {{ product?.id }}</p>
+      <p><strong>Buyer:</strong> {{ product?.buyerDetails }}</p>
+      <p><strong>Order Number:</strong> {{ product?.orderNumber }}</p>
+      <p><strong>Payment Method:</strong> {{ product?.paymentMethod }}</p>
+      <p><strong>Invoice Number:</strong> {{ product?.invoiceNumber }}</p>
+      <p><strong>Supplier:</strong> {{ product?.supplier }}</p>
+    </div>
+  </div>
+  

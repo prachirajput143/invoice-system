@@ -1,0 +1,72 @@
+<div class="invoice-form-container">
+  <h2>Product Invoice Form</h2>
+
+  <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+    <div class="form-section">
+      <div class="form-group">
+        <label>Account Details:</label>
+        <input type="text" formControlName="accountDetails" required />
+      </div>
+
+      <div class="form-group">
+        <label>Buyer Details:</label>
+        <input type="text" formControlName="buyerDetails" required />
+      </div>
+    </div>
+
+    <div class="form-section">
+      <div class="form-group">
+        <label>Due Date:</label>
+        <input type="date" formControlName="dueDate" required />
+      </div>
+
+      <div class="form-group">
+        <label>Handling Costs:</label>
+        <input type="number" formControlName="handlingCosts" />
+      </div>
+    </div>
+
+    <div class="form-section">
+      <div class="form-group">
+        <label>Order Number:</label>
+        <input type="text" formControlName="orderNumber" />
+      </div>
+
+      <div class="form-group">
+        <label>Payment Method:</label>
+        <input type="text" formControlName="paymentMethod" />
+      </div>
+    </div>
+
+    <div class="form-section">
+      <div class="form-group">
+        <label>Payment Term:</label>
+        <input type="text" formControlName="paymentTerm" />
+      </div>
+
+      <div class="form-group">
+        <label>Shipping Cost:</label>
+        <input type="number" formControlName="shipping" />
+      </div>
+    </div>
+
+    <div class="form-section">
+      <div class="form-group">
+        <label>Supplier:</label>
+        <input type="text" formControlName="supplier" />
+      </div>
+
+      <div class="form-group">
+        <label>Tax Calculation:</label>
+        <input type="number" formControlName="taxCalculation" />
+      </div>
+    </div>
+
+    <div class="form-group full-width">
+      <label>Total Payable:</label>
+      <input type="number" formControlName="totalPayable" />
+    </div>
+
+    <button type="submit" class="submit-btn">Submit Invoice</button>
+  </form>
+</div>

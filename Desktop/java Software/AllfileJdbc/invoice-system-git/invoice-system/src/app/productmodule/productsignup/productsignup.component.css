@@ -1,0 +1,92 @@
+/* Invoice Form Container */
+.invoice-form-container {
+  max-width: 850px;
+  margin: auto;
+  background: linear-gradient(135deg, #f0f4f8, #d9e2ec); /* Professional Light Blue */
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  font-family: 'Poppins', sans-serif;
+  border: 1px solid #b0bec5;
+}
+
+/* Title Styling */
+h2 {
+  text-align: center;
+  color: #2c3e50;
+  margin-bottom: 25px;
+  font-size: 26px;
+  font-weight: 600;
+}
+
+/* Form Grid for Better Layout */
+.form-section {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 15px;
+}
+
+.form-group {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Labels */
+.form-group label {
+  font-weight: 600;
+  font-size: 15px;
+  color: #34495e;
+  margin-bottom: 6px;
+}
+
+/* Input Fields */
+.form-group input {
+  padding: 12px;
+  border: 1px solid #a0aec0; /* Soft Blue Border */
+  border-radius: 6px;
+  font-size: 15px;
+  background-color: #f7fafc; /* Light Blue Tint */
+  transition: all 0.3s ease-in-out;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Input Focus Effect */
+.form-group input:focus {
+  border-color: #0056b3;
+  box-shadow: 0 0 8px rgba(0, 86, 179, 0.4);
+  background-color: #fff;
+  outline: none;
+}
+
+/* Full Width Input */
+.full-width {
+  width: 100%;
+}
+
+/* Submit Button */
+.submit-btn {
+  width: 100%;
+  padding: 15px;
+  background: linear-gradient(135deg, #007bff, #004c8c);
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  margin-top: 20px;
+  border-radius: 6px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.submit-btn:hover {
+  background: linear-gradient(135deg, #004c8c, #002f5f);
+}
+
+/* Responsive Design for Small Screens */
+@media (max-width: 768px) {
+  .form-section {
+    flex-direction: column;
+  }
+}

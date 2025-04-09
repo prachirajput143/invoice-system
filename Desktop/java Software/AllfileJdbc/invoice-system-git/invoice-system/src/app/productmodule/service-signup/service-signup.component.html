@@ -1,0 +1,60 @@
+<div class="invoice-container">
+  <h2>Create Service Invoice</h2>
+
+  <form [formGroup]="invoiceForm" (ngSubmit)="saveInvoice()">
+
+        <!-- Client Dropdown -->
+        <label for="client">Select Client:</label>
+
+        <select formControlName="clientId" class="form-control">
+            <option value="">-- Select Client --</option>
+            <option *ngFor="let client of clients" [value]="client.id">
+              {{ client.firstName }} {{ client.lastName }} {{ client.id }}
+            </option>
+          </select>
+    <div class="form-group">
+      <label>Due Date:</label>
+      <input type="date" formControlName="dueDate" required />
+    </div>
+
+    <div class="form-group">
+      <label>Grand Total:</label>
+      <input type="number" formControlName="grandTotal" required />
+    </div>
+
+    <div class="form-group">
+      <label>Notes:</label>
+      <textarea formControlName="notes"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label>Payment Term:</label>
+      <input type="text" formControlName="paymentTerm" required />
+    </div>
+
+    <div class="form-group">
+      <label>Status:</label>
+      <input type="text" formControlName="status" required />
+    </div>
+
+    <div class="form-group">
+      <label>Sub Total:</label>
+      <input type="number" formControlName="subTotal" required />
+    </div>
+
+    <div class="form-group">
+      <label>Tax:</label>
+      <input type="number" formControlName="tax" required />
+    </div>
+
+    
+    
+    
+    
+
+    <button type="submit" [disabled]="isLoading">Save Invoice</button>
+
+    <p class="success" *ngIf="successMessage">{{ successMessage }}</p>
+    <p class="error" *ngIf="errorMessage">{{ errorMessage }}</p>
+  </form>
+</div>
