@@ -9,7 +9,7 @@ export class PdfPreviewModalComponent {
   @Input() pdfUrl: string = '';
   @Input() showModal: boolean = false;
   @Output() close = new EventEmitter<void>();
-
+  
   closeModal() {
     this.close.emit();
   }
