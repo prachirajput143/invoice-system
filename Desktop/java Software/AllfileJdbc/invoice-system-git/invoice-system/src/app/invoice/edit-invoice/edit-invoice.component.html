@@ -70,12 +70,12 @@
             <td><input type="number" formControlName="paid" /></td>
             <td><input type="number" formControlName="grandTotal" readonly /></td>
             <td><input type="number" formControlName="total" readonly /></td>
-            <td><button type="button" (click)="removeItem(i)">🗑️</button></td>
+            <td><button type="button" (click)="removeItem(i)" style="background-color: #e74c3c; color: white; padding: 8px 12px; border: none; border-radius: 6px; cursor: pointer; font-weight: 600;">🗑️</button></td>
           </tr>
         </tbody>
       </table>
-      <button type="button" (click)="addItem()">➕ Add New Item</button>
-    </form>
+      <button type="button" (click)="addItem()" style="background-color: #e74c3c; color: white; padding: 8px 16px; margin-top: 12px; border: none; border-radius: 6px; cursor: pointer; font-weight: 600;"> ➕ Add New Item</button>
+        </form>
   
     <!-- Summary -->
     <div class="summary-box">
@@ -87,13 +87,14 @@
     </div>
   
     <!-- Notes -->
-    <textarea [formControl]="invoiceForm.get('note')" placeholder="note"></textarea>
+    <textarea [formControl]="invoiceForm.get('note')" placeholder="note"   style="width: 100%; min-height: 150px; padding: 8px; border-radius: 6px; border: 1px solid #ccc;">      ></textarea>
   
     <!-- Payment Section -->
     <div class="payment-section">
       <h3 style="color: black;">Payment Details</h3>
+  
       <div class="payment-form">
-        <select [(ngModel)]="paymentForm.paymentName" name="paymentName">
+        <select class="form-control" [(ngModel)]="paymentForm.paymentName" name="paymentName" placeholder="Select Payment Method">
           <option value="">Select Payment Method</option>
           <option value="Cash">CASH</option>
           <option value="Cheque">CHEQUE</option>
@@ -102,10 +103,12 @@
           <option value="UPI">UPI</option>
           <option value="Other">Other</option>
         </select>
-        <input type="text" [(ngModel)]="paymentForm.paymentDetails" name="paymentDetails" placeholder="Details" />
-        <input type="number" [(ngModel)]="paymentForm.paymentAmount" name="paymentAmount" placeholder="Amount" />
-        <input type="date" [(ngModel)]="paymentForm.paymentDate" name="paymentDate" />
-        <button type="button" (click)="addPayment()">➕ Add</button>
+  
+        <input type="text" class="form-control" [(ngModel)]="paymentForm.paymentDetails" name="paymentDetails" placeholder="Payment Details" />
+        <input type="number" class="form-control" [(ngModel)]="paymentForm.paymentAmount" name="paymentAmount" placeholder="Amount" />
+        <input type="date" class="form-control" [(ngModel)]="paymentForm.paymentDate" name="paymentDate" />
+  
+        <button type="button" (click)="addPayment()" class="btn-add">➕ Add</button>
       </div>
   
       <table class="payment-table">
@@ -124,18 +127,17 @@
             <td>{{ payment.notes }}</td>
             <td>{{ payment.amount }}</td>
             <td>{{ payment.paymentDate }}</td>
-            <td><button (click)="removePayment(i)">❌</button></td>
+            <td>
+              <button (click)="removePayment(i)" class="btn-remove">❌</button>
+            </td>
           </tr>
         </tbody>
-      </table>
-    </div>
+      </table>  
   
     <!-- Actions -->
     <div class="invoice-actions">
-      <button (click)="printPDF(pdfPreviewUrl)">Print</button>
-      <button (click)="window.open(pdfPreviewUrl, '_blank')">Preview</button>
-      <button (click)="saveInvoice()" class="btn btn-primary">Save Invoice</button>
-
+      <button (click)="printPDF(pdfPreviewUrl)" style="background-color: #3498db;color: white; padding: 10px 20px; border: none; border-radius: 6px; cursor: pointer; font-weight: 600; position: absolute; left: 55px;"> Print</button>
+     <button (click)="saveInvoice()" class="btn btn-primary">Save Invoice</button>
     </div>
   
     <!-- Modal -->

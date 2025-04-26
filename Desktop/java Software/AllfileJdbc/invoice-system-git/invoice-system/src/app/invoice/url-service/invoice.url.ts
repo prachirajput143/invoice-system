@@ -5,6 +5,7 @@ import { Injectable } from "@angular/core";
 })
 export class InvoiceUrlService {
   baseUrl = 'http://localhost:2061/invoice-service-local';
+  updateInvoice : string= this.baseUrl+'/invoices/updateInvoice'
 
   get create(): string {
     return `${this.baseUrl}/invoices/create`;

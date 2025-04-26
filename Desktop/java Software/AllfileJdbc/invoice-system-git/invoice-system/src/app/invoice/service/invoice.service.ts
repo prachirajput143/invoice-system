@@ -46,8 +46,12 @@ export class InvoiceService {
     return this.http.get<any>(url);
   }
 
-  updateInvoice(invoiceId: number, updateData: any): Observable<any> {
-    const url = `${this.BASE_URL}/invoices/updateInvoice?id=${invoiceId}`;
-    return this.http.put<any>(url, updateData);
+  updateInvoice( updateData: any): Observable<any> {
+    
+    
+    console.log(updateData);
+    return this.http.put<any>(this.urlService.updateInvoice, updateData);
+    
+    
   }
 }

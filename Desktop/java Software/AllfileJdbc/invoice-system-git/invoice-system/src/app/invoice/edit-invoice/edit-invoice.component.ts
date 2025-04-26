@@ -13,7 +13,7 @@ export class EditInvoiceComponent implements OnInit {
   paymentForm!: FormGroup;
   payments: any[] = [];
 
-  invoiceId: number | null = null;
+  invoiceId: number | null = null; 
   searchInvoiceNumber = '';
 
   customerName = '';
@@ -169,7 +169,6 @@ export class EditInvoiceComponent implements OnInit {
       next: (res: any) => {
         const invoice = res.data;
         this.invoiceId = invoice.id;
-
         this.customerName = invoice.customerName;
         this.customerEmail = invoice.customerEmail;
         this.customerPhone = invoice.customerPhone;
@@ -207,66 +206,68 @@ export class EditInvoiceComponent implements OnInit {
   }
 
   updateInvoice() {
-    if (!this.invoiceId) {
-      alert('Invoice ID missing!');
+    if (!this.invoiceId || this.invoiceId <= 0) {
+      alert('Invoice ID is missing or invalid. Please fetch a valid invoice first!');
       return;
     }
 
-    const invoiceData = this.prepareInvoiceData();
+    const invoiceData = {
+      id:this.invoiceId,
+      customerPhone: this.customerPhone,
+      client: {
+        id:this.invoiceId,
+        name: this.customerName,
+        email: this.customerEmail,
+        customerPhone: this.customerPhone,
+      },
+      items: this.invoiceForm.value.items,
+      note: this.invoiceForm.get('note')?.value,
+      payments: this.payments,
+    };
+console.log(invoiceData);
 
-    this.invoiceService.updateInvoice(this.invoiceId, invoiceData).subscribe({
+    this.invoiceService.updateInvoice( invoiceData).subscribe({
       next: (res: any) => {
         alert('Invoice updated successfully!');
-        this.pdfPreviewUrl = res.data.pdfUrl;
-        this.isPdfModalOpen = true;
+        // this.pdfPreviewUrl = res.data.pdfUrl;
+        // this.isPdfModalOpen = true;
       },
       error: (err) => {
         console.error('Update error', err);
-        alert('Error updating invoice!');
+        alert('Error updating invoice: ' + (err?.error?.message || 'Unknown error'));
       }
     });
   }
 
   saveInvoice() {
     const invoiceData = this.prepareInvoiceData();
-  
-    if (this.invoiceId) {
-      // Update
-      this.invoiceService.updateInvoice(this.invoiceId, invoiceData).subscribe({
-        next: (res: any) => {
-          alert('Invoice updated successfully!');
-          this.pdfPreviewUrl = res.data.pdfUrl;
-          this.isPdfModalOpen = true;
-          this.downloadPDF(this.pdfPreviewUrl); 
-        },
-        error: (err) => {
-          console.error('Update error', err);
-          alert('Error updating invoice!');
-        }
-      });
+
+    if (this.invoiceId && this.invoiceId > 0) {
+      this.updateInvoice(); 
     } else {
-      // Create new
       this.invoiceService.createInvoice(invoiceData).subscribe({
         next: (res: any) => {
           alert('Invoice created successfully!');
-          this.invoiceId = res.data.id;
+          this.invoiceId = res.data.id; 
           this.pdfPreviewUrl = res.data.pdfUrl;
           this.isPdfModalOpen = true;
-          this.downloadPDF(this.pdfPreviewUrl); 
+          this.downloadPDF(this.pdfPreviewUrl);
         },
         error: (err) => {
           console.error('Create error', err);
-          alert('Error creating invoice!');
+          alert('Error creating invoice: ' + (err?.error?.message || 'Unknown error'));
         }
       });
     }
-  }  
+  }
+
   prepareInvoiceData() {
     return {
       client: {
+        id:this.invoiceId,
         name: this.customerName,
         email: this.customerEmail,
-        phone: this.customerPhone,
+        customerPhone: this.customerPhone,
       },
       items: this.invoiceForm.value.items,
       note: this.invoiceForm.get('note')?.value,
@@ -281,6 +282,7 @@ export class EditInvoiceComponent implements OnInit {
       win.print();
     }
   }
+
   downloadPDF(url: string) {
     const a = document.createElement('a');
     a.href = url;
@@ -288,5 +290,5 @@ export class EditInvoiceComponent implements OnInit {
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
-  }  
+  }
 }
