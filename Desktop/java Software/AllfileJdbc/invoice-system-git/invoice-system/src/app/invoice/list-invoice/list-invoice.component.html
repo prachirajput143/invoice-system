@@ -1,0 +1,41 @@
+<div class="invoice-list-container">
+  <h2>Client Invoice List</h2>
+
+  <div class="search-box">
+    <input
+      type="number"
+      [(ngModel)]="clientInvoiceId"
+      placeholder="Enter Client Invoice ID"
+    />
+    <button (click)="fetchInvoicesByClient()">Search</button>
+  </div>
+
+  <div *ngIf="invoices.length > 0; else noData">
+    <table class="invoice-table">
+      <thead>
+        <tr>
+          <th>Invoice Number</th>
+          <th>Invoice Date</th>
+          <th>Total Amount</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let invoice of invoices">
+          <td>{{ invoice.invoiceNumber }}</td>
+          <td>{{ invoice.invoiceDate | date: 'mediumDate' }}</td>
+          <td>₹{{ invoice.totalAmount }}</td>
+          <td>
+            <span [ngClass]="getStatusClass(invoice.status)">
+              {{ invoice.status }}
+            </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <ng-template #noData>
+    <p class="no-data">No invoices found for the given client ID.</p>
+  </ng-template>
+</div>

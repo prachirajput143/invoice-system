@@ -14,4 +14,7 @@ export class InvoiceUrlService {
   get generatePdf(): string {
     return `${this.baseUrl}/invoices/generate-pdf`;
   }
+
+
+
 }
