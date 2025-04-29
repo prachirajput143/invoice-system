@@ -1,0 +1,44 @@
+<div class="expense-card">
+    <div class="header">
+      <h3>Expenses</h3>
+      <select>
+        <option>This week</option>
+        <option>Last week</option>
+      </select>
+    </div>
+  
+    <apx-chart
+      [series]="gaugeChart.series"
+      [chart]="gaugeChart.chart"
+      [plotOptions]="gaugeChart.plotOptions"
+      [fill]="gaugeChart.fill"
+      [stroke]="gaugeChart.stroke"
+      [labels]="gaugeChart.labels"
+    ></apx-chart>
+  
+    <div class="center-text">
+      <h2>${{ value }}</h2>
+      <p>All Total</p>
+    </div>
+  
+    <div class="taxable-profit">
+      <h4>Taxable Profit</h4>
+      <div class="amount">${{ taxableProfit }}</div>
+      <span class="badge green">+2.31%</span>
+    </div>
+  
+    <div class="mini-cards">
+      <div class="mini-card" *ngFor="let stat of miniStats">
+        <div class="left">
+          <p>{{ stat.title }}</p>
+          <strong>${{ stat.value }}</strong>
+        </div>
+        <div class="right">
+          <span class="badge" [style.background]="stat.color">{{ stat.trend }}</span>
+          <!-- Replace with actual mini-chart -->
+          <small>[Mini Chart]</small>
+        </div>
+      </div>
+    </div>
+  </div>
+  

@@ -3,7 +3,8 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 @Component({
   selector: 'app-pdf-preview-modal',
   templateUrl: './pdf-preview-modal.component.html',
-  styleUrls: ['./pdf-preview-modal.component.scss']
+  styleUrls: ['./pdf-preview-modal.component.scss'],
+  standalone:false
 })
 export class PdfPreviewModalComponent {
   @Input() pdfUrl: string = '';

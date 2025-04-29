@@ -1,33 +1,64 @@
-<div class="invoice-list-container">
-  <h2>Client Invoice List</h2>
+<div class="invoice-container">
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+      <div class="logo">INVOICE PRO</div>
+      <ul class="nav-links">
+        <li><a routerLink="/dashboard">Home</a></li>
+        <li><a routerLink="/dashboard">Dashboard</a></li>
+        <li><a routerLink="/dashboard/analytics">Analytics</a></li>
+        <li class="dropdown">
+          <a routerLink="/dashboard/invoice/create">Invoice</a>
+          <ul class="dropdown-content">
+            <li><a routerLink="/dashboard/invoice/list">List</a></li>
+            <li><a routerLink="/dashboard/invoice/edit">Edit</a></li>
+          </ul>
+        </li>
+        <li><a routerLink="/dashboard/report">Report</a></li>
+      </ul>
+      <div class="user-section">
+        <input type="text" placeholder="Search..." class="search-bar" />
+        <span class="theme-toggle">🌙</span>
+      </div>
+    </nav>
+   <!-- invoice-list.component.html -->
+<div class="invoice-page-container">
+  <div class="invoice-header">
+    <h2>Invoice List</h2>
 
-  <div class="search-box">
-    <input
-      type="number"
-      [(ngModel)]="clientInvoiceId"
-      placeholder="Enter Client Invoice ID"
-    />
-    <button (click)="fetchInvoicesByClient()">Search</button>
+    <div class="filter-section">
+      <select [(ngModel)]="paymentStatusFilter" (change)="fetchInvoices()">
+        <option value="">All Status</option>
+        <option *ngFor="let status of paymentStatusOptions" [value]="status">{{ status }}</option>
+      </select>
+    </div>
   </div>
 
-  <div *ngIf="invoices.length > 0; else noData">
-    <table class="invoice-table">
+  <div *ngIf="loading" class="loading-spinner">
+    <p>Loading invoices...</p>
+  </div>
+
+  <div *ngIf="!loading && invoices.length > 0" class="invoice-table">
+    <table>
       <thead>
         <tr>
+          <th>#</th>
           <th>Invoice Number</th>
-          <th>Invoice Date</th>
+          <th>Customer Name</th>
+          <th>Created Date</th>
           <th>Total Amount</th>
-          <th>Status</th>
+          <th>Payment Status</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let invoice of invoices">
+        <tr *ngFor="let invoice of invoices; let i = index">
+          <td>{{ i + 1 + page * size }}</td>
           <td>{{ invoice.invoiceNumber }}</td>
-          <td>{{ invoice.invoiceDate | date: 'mediumDate' }}</td>
-          <td>₹{{ invoice.totalAmount }}</td>
+          <td>{{ invoice.customerName }}</td>
+          <td>{{ invoice.createdAt | date: 'medium' }}</td>
+          <td>₹{{ invoice.totalAmount | number: '1.2-2' }}</td>
           <td>
-            <span [ngClass]="getStatusClass(invoice.status)">
-              {{ invoice.status }}
+            <span [ngClass]="getPaymentStatusClass(invoice.paymentStatus)">
+              {{ invoice.paymentStatus }}
             </span>
           </td>
         </tr>
@@ -35,7 +66,14 @@
     </table>
   </div>
 
-  <ng-template #noData>
-    <p class="no-data">No invoices found for the given client ID.</p>
-  </ng-template>
+  <div *ngIf="!loading && invoices.length === 0" class="no-data">
+    <p>No invoices found.</p>
+  </div>
+
+  <div class="pagination-controls" *ngIf="totalRecords > size">
+    <button (click)="previousPage()" [disabled]="page === 0">Previous</button>
+    <span>Page {{ page + 1 }} of {{ totalPages }}</span>
+    <button (click)="nextPage()" [disabled]="page >= totalPages - 1">Next</button>
+  </div>
+</div>
 </div>

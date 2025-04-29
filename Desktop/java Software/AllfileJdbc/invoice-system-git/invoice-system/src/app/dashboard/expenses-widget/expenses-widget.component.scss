@@ -1,0 +1,80 @@
+.expense-card {
+    background: #fff;
+    border-radius: 1rem;
+    padding: 1rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+  
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+  
+    .center-text {
+      text-align: center;
+      margin-top: -2rem;
+  
+      h2 {
+        font-size: 24px;
+        font-weight: 600;
+      }
+  
+      p {
+        font-size: 14px;
+        color: #888;
+      }
+    }
+  
+    .taxable-profit {
+      background: #000;
+      color: #fff;
+      border-radius: 0.8rem;
+      padding: 0.8rem;
+      margin-top: 1rem;
+  
+      .badge {
+        background: #27ae60;
+        padding: 0.2rem 0.5rem;
+        border-radius: 0.5rem;
+        font-size: 12px;
+        float: right;
+      }
+    }
+  
+    .mini-cards {
+      margin-top: 1rem;
+  
+      .mini-card {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.6rem 0;
+        border-bottom: 1px solid #f0f0f0;
+  
+        .left {
+          p {
+            margin: 0;
+            font-size: 13px;
+            color: #888;
+          }
+          strong {
+            font-size: 16px;
+          }
+        }
+  
+        .right {
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+  
+          .badge {
+            color: #fff;
+            border-radius: 4px;
+            padding: 0.3rem 0.5rem;
+            font-size: 12px;
+          }
+        }
+      }
+    }
+  }
+  

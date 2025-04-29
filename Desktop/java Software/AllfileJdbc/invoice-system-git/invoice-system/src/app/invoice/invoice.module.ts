@@ -4,12 +4,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { InvoiceRoutingModule } from './invoice-routing.module';
 import { CreateInvoiceComponent } from './create-invoice/create-invoice.component';
 import { NgChartsModule } from 'ng2-charts';
-import { ListInvoiceComponent } from './list-invoice/list-invoice.component';
 import { EditInvoiceComponent } from './edit-invoice/edit-invoice.component';
+import { InvoiceListComponent } from './list-invoice/list-invoice.component';
 //import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
-  declarations: [CreateInvoiceComponent,ListInvoiceComponent,EditInvoiceComponent],
+  declarations: [CreateInvoiceComponent,InvoiceListComponent,EditInvoiceComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,

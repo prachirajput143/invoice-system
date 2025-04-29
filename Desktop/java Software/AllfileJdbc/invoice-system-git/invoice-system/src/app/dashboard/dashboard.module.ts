@@ -6,19 +6,27 @@ import { InvoiceTrackingComponent } from './invoice-tracking/invoice-tracking.co
 import { NgChartsModule } from 'ng2-charts';  
 import { AnalyticsComponent } from './analytics-index/analytics.component';
 import { HttpClientModule } from '@angular/common/http';
+import { SummaryCardsComponent } from './summary-cards/summary-cards.component';
+import { CashFlowComponent } from './cash-flow/cash-flow.component';
+import { NgApexchartsModule } from 'ng-apexcharts';
+import { ExpensesWidgetComponent } from './expenses-widget/expenses-widget.component';
 
 
 @NgModule({
   declarations: [
     DashboardComponent,
     AnalyticsComponent,
-    InvoiceTrackingComponent
+    InvoiceTrackingComponent,
+    SummaryCardsComponent,
+    CashFlowComponent,
+    ExpensesWidgetComponent
   ],
   imports: [
     CommonModule,
     DashboardRoutingModule,
     NgChartsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgApexchartsModule
   ]
 })
 export class DashboardModule { }

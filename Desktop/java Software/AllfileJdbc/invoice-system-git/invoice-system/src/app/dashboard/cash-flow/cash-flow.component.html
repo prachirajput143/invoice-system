@@ -1,0 +1,28 @@
+<div class="cash-flow-card">
+    <div class="header">
+      <h2>Cash Flow</h2>
+      <select>
+        <option>This week</option>
+        <option>Last week</option>
+      </select>
+    </div>
+    <apx-chart
+      [series]="chartSeries"
+      [chart]="chart"
+      [xaxis]="xaxis"
+      [colors]="colors"
+      [stroke]="stroke"
+      [fill]="fill"
+    ></apx-chart>
+  
+    <div class="summary">
+      <div class="income">
+        <span class="dot income-dot"></span> Income <strong>$22,000.00</strong>
+      </div>
+      <div class="outcome">
+        <span class="dot outcome-dot"></span> Outcome <strong>$10,000.00</strong>
+      </div>
+      <a class="view-more">View More</a>
+    </div>
+  </div>
+  

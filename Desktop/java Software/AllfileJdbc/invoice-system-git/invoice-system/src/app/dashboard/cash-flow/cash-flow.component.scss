@@ -1,0 +1,40 @@
+.cash-flow-card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 1rem;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.05);
+  
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+  
+    .summary {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 1rem;
+  
+      .dot {
+        display: inline-block;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        margin-right: 5px;
+      }
+  
+      .income-dot { background: #6C63FF; }
+      .outcome-dot { background: #FFA500; }
+  
+      strong { margin-left: 5px; }
+  
+      .view-more {
+        color: #6C63FF;
+        text-decoration: underline;
+        cursor: pointer;
+      }
+    }
+  }
+  

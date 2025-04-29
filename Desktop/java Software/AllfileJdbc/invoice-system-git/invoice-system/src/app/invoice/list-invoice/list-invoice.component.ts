@@ -7,43 +7,68 @@ import { InvoiceService } from '../service/invoice.service';
   styleUrls: ['./list-invoice.component.scss'],
   standalone:false
 })
-export class ListInvoiceComponent implements OnInit {
-
-  clientInvoiceId: number | null = null;
+export class InvoiceListComponent implements OnInit {
   invoices: any[] = [];
+  loading = false;
+  page = 10;
+  size = 19;
+  totalRecords = 0;
+  totalPages = 0;
+  paymentStatusFilter = '';
+  searchCustomerName='';
 
-  constructor(private service: InvoiceService) {}
+  paymentStatusOptions = ['PAID', 'UNPAID', 'PENDING'];
 
-  ngOnInit(): void {}
+  constructor(private invoiceService: InvoiceService) {}
 
-  fetchInvoicesByClient(): void {
-    if (!this.clientInvoiceId) {
-      alert('Please enter a valid Client Invoice ID.');
-      return;
-    }
+  ngOnInit() {
+    this.fetchInvoices();
+  }
 
-    this.service.getInvoicesByClientId(this.clientInvoiceId).subscribe({
-      next: (data) => {
-        console.log('Fetched invoices:', data);
-        this.invoices = data;
+  fetchInvoices() {
+    this.loading = true;
+    this.invoiceService.getInvoices(this.page, this.size, this.paymentStatusFilter, this.searchCustomerName).subscribe({
+      next: (res) => {
+        this.invoices = res.data || [];
+        this.totalRecords = res.totalRecords;
+        this.totalPages = Math.ceil(this.totalRecords / this.size);
+        this.loading = false;
       },
       error: (err) => {
         console.error('Error fetching invoices:', err);
-        this.invoices = [];
-      },
+        this.loading = false;
+      }
     });
   }
+  
+  nextPage() {
+    if (this.page < this.totalPages - 1) {
+      this.page++;
+      this.fetchInvoices();
+    }
+  }
 
-  getStatusClass(status: string): string {
-    switch (status.toLowerCase()) {
-      case 'paid':
+  previousPage() {
+    if (this.page > 0) {
+      this.page--;
+      this.fetchInvoices();
+    }
+  }
+  search() {
+    this.page = 0; // jab search ho to first page se start karo
+    this.fetchInvoices();
+  }  
+
+  getPaymentStatusClass(status: string) {
+    switch (status) {
+      case 'PAID':
         return 'status-paid';
-      case 'pending':
+      case 'UNPAID':
+        return 'status-unpaid';
+      case 'PENDING':
         return 'status-pending';
-      case 'overdue':
-        return 'status-overdue';
       default:
-        return 'status-default';
+        return '';
     }
   }
 }

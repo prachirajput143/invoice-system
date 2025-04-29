@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Invoice } from '../invoice.model';
 import { InvoiceUrlService } from '../url-service/invoice.url';
@@ -47,11 +47,18 @@ export class InvoiceService {
   }
 
   updateInvoice( updateData: any): Observable<any> {
-    
-    
     console.log(updateData);
     return this.http.put<any>(this.urlService.updateInvoice, updateData);
-    
-    
+  }
+  getInvoices(page: number, size: number, paymentStatus: string = '', customerName: string = '') {
+    let params = new HttpParams().set('page', page.toString()).set('size', size.toString());
+    if (paymentStatus) {
+      params = params.set('paymentStatus', paymentStatus);
+    }
+
+    if (customerName) {
+      params = params.set('customerName', customerName);
+    }
+    return this.http.get<any>(`${this.BASE_URL}/invoices/findAll`, { params: params });
   }
 }
