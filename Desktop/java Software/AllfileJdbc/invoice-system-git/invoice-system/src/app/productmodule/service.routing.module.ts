@@ -3,7 +3,6 @@ import { RouterModule, Routes } from "@angular/router";
 import { ProductsignupComponent } from "./productsignup/productsignup.component";
 import { ProductFindallinvoiceComponent } from "./product-findallinvoice/product-findallinvoice.component";
 import { ProductFindByIdComponent } from "./product-find-by-id/product-find-by-id.component";
-import { ProductUpdateInvoiceComponent } from "./update-invoice/update-invoice.component";
 import { ServiceSignupComponent } from "./service-signup/service-signup.component";
 import { ServiceFindbyidComponent } from "./service-findbyid/service-findbyid.component";
 import { ServiceFindallComponent } from "../service-findall/service-findall.component";

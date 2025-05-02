@@ -10,7 +10,6 @@ import { ProductFindByIdComponent } from "./product-find-by-id/product-find-by-i
 import { ProductRoutingModule } from "./product.routing.module";
 import { ProductInvoiceService } from "../services/product-service";
 import { ApiUrlService } from "../services/product-url-service";
-import { ProductUpdateInvoiceComponent } from "./update-invoice/update-invoice.component";
 import { ServiceSignupComponent } from "./service-signup/service-signup.component";
 import { ServiceRoutingModule } from "./service.routing.module";
 import { ServiceFindbyidComponent } from "./service-findbyid/service-findbyid.component";

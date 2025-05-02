@@ -1,5 +1,6 @@
-<div class="invoice-container">
+
     <h2>All Proforma Invoices</h2>
+    
   
     <div class="filter-options">
       <label for="page">Page Number:</label>
@@ -16,7 +17,7 @@
       <button (click)="nextPage()" [disabled]="(page * size) >= totalRecords" class="nav-btn">Next ➡</button>
     </div>
   
-    <table *ngIf="standard.length > 0" class="invoice-table">
+    <table *ngIf="proforma.length > 0" class="invoice-table">
       <thead>
         <tr>
           <th>ID</th>
@@ -26,7 +27,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let invoice of standard">
+        <tr *ngFor="let invoice of proforma">
           <td>{{ invoice.id }}</td>
           <td>{{ invoice.invoiceNumber }}</td>
           <td>{{ invoice.status }}</td>
@@ -37,6 +38,5 @@
       </tbody>
     </table>
   
-    <p class="no-data" *ngIf="standard.length === 0">⚠ No service invoices found.</p>
-  </div>
-  
+    <p class="no-data" *ngIf="proforma.length === 0">⚠ No service invoices found.</p>
+

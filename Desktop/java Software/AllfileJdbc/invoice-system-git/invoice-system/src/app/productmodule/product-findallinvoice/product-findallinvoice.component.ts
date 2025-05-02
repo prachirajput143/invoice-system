@@ -51,6 +51,11 @@ export class ProductFindallinvoiceComponent {
       this.findAllInvoices();
     }
   }
+
+  goToUpdate() {
+    this.router.navigate(['product/product-update']);
+  }
+
   deleteInvoice(id: number) {
     if (confirm('Are you sure you want to delete this invoice?')) {
       this.invoiceService.deleteInvoice(id).subscribe({

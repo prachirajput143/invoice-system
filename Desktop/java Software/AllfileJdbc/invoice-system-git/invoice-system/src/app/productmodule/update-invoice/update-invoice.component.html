@@ -1,9 +1,108 @@
-<form (ngSubmit)="updateInvoice()">
-  <label>Buyer Details:</label>
-  <input type="text" [(ngModel)]="invoiceData.buyerDetails" name="buyerDetails" required />
+<div class="invoice-update-container">
+  <h2>Update Invoice</h2>
 
-  <label>Order Number:</label>
-  <input type="text" [(ngModel)]="invoiceData.orderNumber" name="orderNumber" required />
+  <!-- Invoice Select Dropdown -->
+  <div class="form-group">
+    <label for="invoiceId">Select Invoice:</label>
+    <select id="invoiceId" (change)="onInvoiceSelect($event)">
+      <option value="">-- Select Invoice --</option>
+      <option *ngFor="let invoice of allInvoices" [value]="invoice.id">
+        {{ invoice.id }} - {{ invoice.invoiceNumber }}
+      </option>
+    </select>
+  </div>
 
-  <button type="submit">Update Invoice</button>
-</form>
+  <!-- Invoice Update Form -->
+  <form [formGroup]="invoiceForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label>Invoice Number:</label>
+      <input type="text" formControlName="invoiceNumber" />
+    </div>
+
+    <div class="form-group">
+      <label>Total Amount:</label>
+      <input type="number" formControlName="totalAmount" />
+    </div>
+
+    <div class="form-group">
+      <label>Subtotal:</label>
+      <input type="number" formControlName="subTotal" />
+    </div>
+
+    <div class="form-group">
+      <label>Discount:</label>
+      <input type="number" formControlName="discount" />
+    </div>
+
+    <div class="form-group">
+      <label>Tax:</label>
+      <input type="number" formControlName="tax" />
+    </div>
+
+    <div class="form-group">
+      <label>Due Date:</label>
+      <input type="datetime-local" formControlName="dueDate" />
+    </div>
+
+    <div class="form-group">
+      <label>Grand Total:</label>
+      <input type="number" formControlName="grandTotal" />
+    </div>
+
+    <div class="form-group">
+      <label>Quantity:</label>
+      <input type="number" formControlName="quantity" />
+    </div>
+
+    <div class="form-group">
+      <label>Customer Name:</label>
+      <input type="text" formControlName="customerName" />
+    </div>
+
+    <div class="form-group">
+      <label>Customer Email:</label>
+      <input type="email" formControlName="customerEmail" />
+    </div>
+
+    <div class="form-group">
+      <label>Customer Phone:</label>
+      <input type="text" formControlName="customerPhone" />
+    </div>
+
+    <div class="form-group">
+      <label>Paid:</label>
+      <input type="number" formControlName="paid" />
+    </div>
+
+    <div class="form-group">
+      <label>Balance:</label>
+      <input type="number" formControlName="balance" />
+    </div>
+
+    <div class="form-group">
+      <label>Category:</label>
+      <input type="text" formControlName="category" />
+    </div>
+
+    <div class="form-group">
+      <label>Note:</label>
+      <textarea formControlName="note"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label>Payment Status:</label>
+      <input type="text" formControlName="paymentStatus" />
+    </div>
+
+    <div class="form-group">
+      <label>Payment Method:</label>
+      <input type="text" formControlName="paymentMethod" />
+    </div>
+
+    <button type="submit" [disabled]="!invoiceForm.valid">Update Invoice</button>
+  </form>
+
+  <!-- Feedback Messages -->
+  <p *ngIf="showSuccessMessage" class="success">✅ Invoice updated successfully!</p>
+  <p *ngIf="showErrorMessage" class="error">❌ Something went wrong!</p>
+</div>

@@ -29,7 +29,7 @@
         <tr *ngFor="let invoice of recurring">
           <td>{{ invoice.id }}</td>
           <td>{{ invoice.invoiceNumber }}</td>
-          <td>{{ invoice.status }}</td>
+          <td>{{ invoice.totalPayable }}</td>
           <td>
             <button (click)="deleteInvoice(invoice.id)" class="delete-btn">🗑 Delete</button>
           </td>

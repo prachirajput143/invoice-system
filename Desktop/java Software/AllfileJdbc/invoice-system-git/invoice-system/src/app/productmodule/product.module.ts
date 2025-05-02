@@ -10,8 +10,8 @@ import { ProductFindByIdComponent } from "./product-find-by-id/product-find-by-i
 import { ProductRoutingModule } from "./product.routing.module";
 import { ProductInvoiceService } from "../services/product-service";
 import { ApiUrlService } from "../services/product-url-service";
-import { ProductUpdateInvoiceComponent } from "./update-invoice/update-invoice.component";
 import { ServiceSignupComponent } from "./service-signup/service-signup.component";
+import { ProductInvoiceUpdateComponent } from "./update-invoice/update-invoice.component";
 
 
 @NgModule({
@@ -19,7 +19,7 @@ import { ServiceSignupComponent } from "./service-signup/service-signup.componen
     ProductsignupComponent,
     ProductFindallinvoiceComponent,
     ProductFindByIdComponent,
-    ProductUpdateInvoiceComponent
+    ProductInvoiceUpdateComponent
   ],
   imports: [
     CommonModule,
