@@ -1,0 +1,41 @@
+<div class="client-login-container">
+  <div class="login-title"> Client Login</div>
+
+  <div *ngIf="loginSuccessMessage" class="alert alert-success">
+     Login successful!
+  </div>
+
+  <div class="login-card">
+    <form [formGroup]="clientLoginForm" (ngSubmit)="onLogin()">
+      
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input
+          type="text"
+          id="username"
+          formControlName="username"
+          class="form-control"
+          placeholder="Enter your username"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input
+          type="password"
+          id="password"
+          formControlName="password"
+          class="form-control"
+          placeholder="Enter your password"
+        />
+      </div>
+
+      <div class="form-bottom">
+        <a href="#" class="forgot-link">Forgot Password?</a>
+        <button type="submit" class="btn-login" [disabled]="clientLoginForm.invalid">
+          Login
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

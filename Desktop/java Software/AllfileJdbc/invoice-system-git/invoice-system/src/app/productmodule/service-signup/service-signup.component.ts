@@ -1,14 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
-import { ClientService } from '../../services/client-service';
 import { ServiceInvoiceService } from '../../services/service';
+import { ClientService } from '../../invoice/service/client.service';
 
 @Component({
   selector: 'app-invoice',
   templateUrl: './service-signup.component.html',
   styleUrls: ['./service-signup.component.css'],
-  standalone: false
+  standalone:false
+
 })
 export class ServiceSignupComponent implements OnInit {
   invoiceForm!: FormGroup;

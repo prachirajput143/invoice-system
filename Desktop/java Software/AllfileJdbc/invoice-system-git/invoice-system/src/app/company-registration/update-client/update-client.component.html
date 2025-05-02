@@ -1,0 +1,56 @@
+<div class="update-container">
+  <h3 class="title">Update Client</h3>
+
+  <div *ngIf="showSuccessMessage" class="alert alert-success alert-dismissible fade show" role="alert">
+    ✅ Client updated successfully!
+  </div>
+  
+  <div *ngIf="showErrorMessage" class="alert alert-error alert-dismissible fade show" role="alert">
+    ❌ Update failed. Please try again.
+  </div>
+  
+
+  <!-- Select Client Dropdown -->
+  <div class="update-card">
+    <div class="form-row">
+      <select id="clientSelect" class="form-input" (change)="onClientSelect($event)">
+        <option value="">-- Select a client --</option>
+        <option *ngFor="let client of allClients" [value]="client.id">
+          {{ client.firstName }} {{ client.lastName }} (ID: {{ client.id }})
+        </option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Update Form -->
+  <div class="update-card" *ngIf="clientFound">
+    <form [formGroup]="updateForm" (ngSubmit)="updateClient()">
+      <input type="hidden" formControlName="id" />
+      <p *ngIf="updateForm.value.id" class="client-id">Client ID: {{ updateForm.value.id }}</p>
+
+      <div class="form-row">
+        <input type="text" class="form-input" formControlName="firstName" placeholder="First Name" />
+        <input type="text" class="form-input" formControlName="lastName" placeholder="Last Name" />
+      </div>
+
+      <div class="form-row">
+        <input type="email" class="form-input" formControlName="email" placeholder="Email" />
+        <input type="text" class="form-input" formControlName="mobileNumber" placeholder="Mobile Number" />
+      </div>
+
+      <div class="form-row">
+        <input type="text" class="form-input" formControlName="address" placeholder="Address" />
+        <input type="text" class="form-input" formControlName="companyName" placeholder="Company Name" />
+      </div>
+
+      <div class="form-row">
+        <input type="text" class="form-input" formControlName="panNumber" placeholder="PAN Number" />
+      </div>
+
+      <div class="button-wrapper mt-3">
+        <button class="submit-button" type="submit">Update Client</button>
+      </div>
+      
+    </form>
+  </div>
+</div>

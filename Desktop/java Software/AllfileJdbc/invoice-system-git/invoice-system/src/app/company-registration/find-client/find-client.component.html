@@ -1,0 +1,28 @@
+<h4 class="text-center mb-4 text-light">🏢 Find Client by ID</h4>
+<div class="search-section">
+  <!-- Find by ID -->
+  <input type="text" [(ngModel)]="clientId" placeholder="Enter Client ID" />
+  <button (click)="findClient()">Find by ID</button>
+
+  <!-- Search by Keyword -->
+  <input type="text" [(ngModel)]="keyword" placeholder="Search by name, email, or mobile" />
+  <button (click)="searchClient()">Search</button>
+</div>
+
+<!-- Display Single Client (ID search) -->
+<div *ngIf="client" class="client-card">
+  <h3>Client Found by ID</h3>
+  <p><strong>Name:</strong> {{client.firstName}} {{client.lastName}}</p>
+  <p><strong>Email:</strong> {{client.email}}</p>
+  <p><strong>Mobile:</strong> {{client.mobileNumber}}</p>
+</div>
+
+<!-- Display Multiple Clients (Keyword search) -->
+<div *ngIf="searchResults.length">
+  <h3>Search Results</h3>
+  <div *ngFor="let c of searchResults" class="client-card">
+    <p><strong>Name:</strong> {{c.firstName}} {{c.lastName}}</p>
+    <p><strong>Email:</strong> {{c.email}}</p>
+    <p><strong>Mobile:</strong> {{c.mobileNumber}}</p>
+  </div>
+</div>

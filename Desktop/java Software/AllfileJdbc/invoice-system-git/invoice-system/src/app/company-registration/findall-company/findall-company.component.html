@@ -1,0 +1,42 @@
+<div class="search-container">
+  <h3 class="title">🔍 Search Companies</h3>
+
+  <div class="search-bar">
+    <input type="number" [(ngModel)]="page" placeholder="Page" class="search-input" />
+    <input type="number" [(ngModel)]="size" placeholder="Size" class="search-input" />
+    <button (click)="loadAllCompanies()" class="search-button">
+      🔍 Search Companies
+    </button>
+  </div>
+
+  <h5 class="total-text">
+    Total Companies: <strong>{{ totalCompanies }}</strong>
+  </h5>
+
+  <div *ngIf="companies && companies.length > 0; else noCompanies">
+    <div class="card-container">
+      <div class="company-card" *ngFor="let company of companies">
+        <h5>CompanyName - {{ company.name }}</h5>
+        <p><strong>Email:</strong> {{ company.email }}</p>
+        <p><strong>Phone:</strong> {{ company.companyPhone }}</p>
+        <p><strong>Address:</strong> {{ company.address }}</p>
+        <p><strong>Client ID:</strong> {{ company.clientId }}</p>
+        <p><strong>Business Type ID:</strong> {{ company.businessTypesId }}</p>
+
+        <button *ngIf="!company.deleted" (click)="deleteCompany(company.id)" class="btn btn-danger btn-sm w-100 mt-2">
+          🗑 Delete
+        </button>
+        <button *ngIf="company.deleted" (click)="restoreCompany(company.id)" class="btn btn-success btn-sm w-100 mt-2">
+          ♻️ Restore
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #noCompanies>
+    <div class="no-companies">
+      <span class="no-icon">🚫</span>
+      <span>No companies found.</span>
+    </div>
+  </ng-template>
+</div>

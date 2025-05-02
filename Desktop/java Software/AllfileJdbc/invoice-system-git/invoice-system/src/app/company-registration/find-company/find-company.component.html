@@ -1,0 +1,30 @@
+<h4 class="text-center mb-4 text-light">🏢 Find Company by ID</h4>
+
+<div class="search-section">
+  <form [formGroup]="companyForm" (ngSubmit)="onSearch()" class="mb-3">
+    <input
+      type="number"
+      formControlName="companyId"
+      placeholder="Enter Company ID"
+    />
+    <button type="submit" [disabled]="companyForm.invalid">Find by ID</button>
+  </form>
+</div>
+
+<div *ngIf="errorMessage" class="alert alert-danger mt-3 text-center">
+  {{ errorMessage }}
+</div>
+
+<!-- Company details from search by ID -->
+<div *ngIf="companyDetails" class="client-card">
+  <h3>Company Found</h3>
+  <p><strong>Name:</strong> {{ companyDetails.name }}</p>
+  <p><strong>Email:</strong> {{ companyDetails.email }}</p>
+  <p><strong>Phone:</strong> {{ companyDetails.companyPhone }}</p>
+  <p><strong>Address:</strong> {{ companyDetails.address }}</p>
+  <p><strong>Website:</strong> {{ companyDetails.website }}</p>
+  <p><strong>Tax ID:</strong> {{ companyDetails.taxIdentificationNumber }}</p>
+  <p><strong>Tax Payer:</strong> {{ companyDetails.taxPayer }}</p>
+  <p><strong>Registration No:</strong> {{ companyDetails.registrationNo }}</p>
+  <p><strong>CIN No:</strong> {{ companyDetails.cinNo }}</p>
+</div>

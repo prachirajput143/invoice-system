@@ -1,0 +1,61 @@
+:host {
+  display: block;
+  padding: 2rem;
+  background-color: #f9f9f9;
+  min-height: 100vh;
+}
+
+.search-section {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 1rem;
+}
+
+input {
+  padding: 0.5rem 1rem;
+  margin: 0.5rem 0.5rem 0.5rem 0;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  width: 250px;
+  font-size: 1rem;
+}
+
+button {
+  padding: 0.5rem 1.2rem;
+  margin: 0.5rem 0;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+h3 {
+  margin-top: 2rem;
+  color: #333;
+}
+
+.client-card {
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+  margin: 1rem 0;
+  transition: transform 0.2s;
+}
+
+.client-card:hover {
+  transform: translateY(-4px);
+}
+
+.client-card p {
+  margin: 0.4rem 0;
+  font-size: 1rem;
+  color: #555;
+}

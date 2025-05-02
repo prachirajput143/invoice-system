@@ -1,63 +1,61 @@
-
 <nav class="navbar">
-    <ul class="nav-list">
-      <!-- Product Invoice Dropdown -->
-      <li class="dropdown">
-        <a href="#">🧾 Product Invoice ▾</a>
-        <ul class="dropdown-menu">
-          <li><a routerLink="/product/product-signup">📝 Create Product Invoice</a></li>
-          <li><a routerLink="/product/product-findbyid">🔍 Find Invoice</a></li>
-          <li><a routerLink="/product/product-findall">📜 All Invoices</a></li>
-          <li><a routerLink="/product/product-update/1">✏️ Update Invoice</a></li>
-        </ul>
-      </li>
-  
+  <ul class="nav-list">
+    <!-- Product Invoice Dropdown -->
+    <li class="dropdown">
+      <a href="#">🧾 Product Invoice ▾</a>
+      <ul class="dropdown-menu">
+        <li><a routerLink="/product/product-signup">📝 Create Product Invoice</a></li>
+        <li><a routerLink="/product/product-findbyid">🔍 Find Invoice</a></li>
+        <li><a routerLink="/product/product-findall">📜 All Invoices</a></li>
+        <li><a routerLink="/product/product-update/1">✏ Update Invoice</a></li>
+      </ul>
+    </li>
+
+    <!-- Service Invoice Dropdown -->
+    <li class="dropdown">
+      <a href="#">🧾 Service Invoice ▾</a>
+      <ul class="dropdown-menu">
+        <li><a routerLink="/service/signup">🛠 Create Service Invoice</a></li>
+        <li><a routerLink="/service/findbyid">🔍 Find By Id Service Invoice</a></li>
+        <li><a routerLink="/service/findallinvoice">📃 All Service Invoices</a></li>
+      </ul>
+    </li>
       <!-- Service Invoice Dropdown -->
       <li class="dropdown">
-        <a href="#">🧾 Service Invoice ▾</a>
+        <a href="#">🧾 Standard Invoice ▾</a>
         <ul class="dropdown-menu">
-          <li><a routerLink="/service/signup">🛠️ Create Service Invoice</a></li>
-          <li><a routerLink="/service/findbyid">🔍 Find By Id Service Invoice</a></li>
-          <li><a routerLink="/service/findallinvoice">📃 All Service Invoices</a></li>
+          <li><a routerLink="/standard/standardsignup">🛠 Create Standard Invoice</a></li>
+          <li><a routerLink="/standard/standardfindbyid">🔍 Find By Id Service Invoice</a></li>
+          <li><a routerLink="/standard/standardfindall">🔍 Find All Service Invoice</a></li>
+          <li><a routerLink="/standard/update">🔍 Update Service Invoice</a></li>
+
         </ul>
       </li>
-        <!-- Service Invoice Dropdown -->
-        <li class="dropdown">
-          <a href="#">🧾 Standard Invoice ▾</a>
-          <ul class="dropdown-menu">
-            <li><a routerLink="/standard/standardsignup">🛠️ Create Standard Invoice</a></li>
-            <li><a routerLink="/standard/standardfindbyid">🔍 Find By Id Service Invoice</a></li>
-            <li><a routerLink="/standard/standardfindall">🔍 Find All Service Invoice</a></li>
-            <li><a routerLink="/standard/update">🔍 Update Service Invoice</a></li>
+       <!-- Service Invoice Dropdown -->
+       <li class="dropdown">
+        <a href="#">🧾 Recurring Invoice ▾</a>
+        <ul class="dropdown-menu">
 
-          </ul>
-        </li>
-         <!-- Service Invoice Dropdown -->
-         <li class="dropdown">
-          <a href="#">🧾 Recurring Invoice ▾</a>
-          <ul class="dropdown-menu">
+          <li><a routerLink="/recurring/recurring-signup">🛠 Create Recurring Invoice</a></li>
+          <li><a routerLink="/recurring/recurring-findbyid">🔍 Find By Id Recurring Invoice</a></li>
+          <li><a routerLink="/recurring/recurring-findall">🔍 Find All Recurring Invoice</a></li>
+          <li><a routerLink="/recurring/update">🔍 Update Recurring Invoice</a></li>
 
-            <li><a routerLink="/recurring/recurring-signup">🛠️ Create Recurring Invoice</a></li>
-            <li><a routerLink="/recurring/recurring-findbyid">🔍 Find By Id Recurring Invoice</a></li>
-            <li><a routerLink="/recurring/recurring-findall">🔍 Find All Recurring Invoice</a></li>
-            <li><a routerLink="/recurring/update">🔍 Update Recurring Invoice</a></li>
+        </ul>
+      </li>
 
-          </ul>
-        </li>
+      <li class="dropdown">
+        <a href="#">🧾 Proforma Invoice ▾</a>
+        <ul class="dropdown-menu">
 
-        <li class="dropdown">
-          <a href="#">🧾 Proforma Invoice ▾</a>
-          <ul class="dropdown-menu">
+          <li><a routerLink="/proforma/proforma-signup">🛠 Create Proforma Invoice</a></li>
+           <li><a routerLink="/proforma/proforma-findbyid">🔍 Find By Id Proforma Invoice</a></li>
+          <li><a routerLink="/proforma/proforma-findall">🔍 Find All Proforma Invoice</a></li>
 
-            <li><a routerLink="/proforma/proforma-signup">🛠️ Create Proforma Invoice</a></li>
-            <li><a routerLink="/proforma/proforma-findbyid">🔍 Find By Id Proforma Invoice</a></li>
-            <li><a routerLink="/proforma/proforma-findall">🔍 Find All Proforma Invoice</a></li>
- 
-          </ul>
-        </li>
-    </ul>
+        </ul>
+      </li>
+  </ul>
 
-  </nav>
-  
-  <router-outlet></router-outlet>
+</nav>
 
+<router-outlet></router-outlet>

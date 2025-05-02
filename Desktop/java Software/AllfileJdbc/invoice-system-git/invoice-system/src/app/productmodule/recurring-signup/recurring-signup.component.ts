@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { RecurringInvoiceService } from '../../services/recurring-service';
 import { CompanyService } from '../../services/company-service';
-import { ClientService } from '../../services/client-service';
 import { HttpClient } from '@angular/common/http';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { ClientService } from '../../invoice/service/client.service';
 
 @Component({
   selector: 'app-recurring-signup',
@@ -53,7 +53,7 @@ export class RecurringSignupComponent {
   }
 
   loadCompanies() {
-    this.companyService.getAllCompanies(0, 100).subscribe({
+    this.companyService.findAllCompanies(0, 100).subscribe({
       next: (res: { data: any[] }) => {
         this.companies = res.data;
       },

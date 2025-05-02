@@ -1,0 +1,45 @@
+<div class="login-container">
+  <div class="title">
+     Login to Company Account
+  </div>
+
+  <div *ngIf="loginSuccessMessage" class="alert alert-success" role="alert">
+    ✅ Login successful!
+  </div>
+
+  <div class="login-card">
+    <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+      <div class="form-row">
+        <input
+          type="text"
+          formControlName="adminUserName"
+          class="form-input"
+          placeholder="Email or Mobile Number"
+        />
+      </div>
+
+      <div class="form-row">
+        <input
+          type="password"
+          formControlName="password"
+          class="form-input"
+          placeholder="Password"
+        />
+      </div>
+
+      <div class="form-row justify-end">
+        <a href="#" class="forgot-password">Forgot Password?</a>
+      </div>
+
+      <div class="form-row">
+        <button
+          type="submit"
+          class="submit-button"
+          [disabled]="loginForm.invalid"
+        >
+           Login
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

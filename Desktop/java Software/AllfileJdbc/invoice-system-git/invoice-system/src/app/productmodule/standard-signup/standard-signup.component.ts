@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { StandardInvoiceService } from '../../services/standard-service';
-import { ClientService } from '../../services/client-service';
+import { ClientService } from '../../invoice/service/client.service'; 
 import { CompanyService } from '../../services/company-service';
 
 @Component({
@@ -61,13 +61,13 @@ export class StandardSignupComponent implements OnInit {
   }
 
   loadCompanies() {
-    this.companyService.getAllCompanies(0, 100).subscribe({
+    this.companyService.findAllCompanies(0, 100).subscribe({
       next: (res: { data: any[] }) => {
         console.log("🚀 Company API Response:", res);  // 👈 log the full response
         this.companies = res.data;
         console.log("✅ Companies loaded:", this.companies);  // 👈 log after assignment
       },
-      error: (err) => {
+      error: (err:any) => {
         console.error("❌ Error loading companies:", err);
       }
     });

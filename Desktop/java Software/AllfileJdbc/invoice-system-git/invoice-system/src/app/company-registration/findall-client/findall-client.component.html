@@ -1,0 +1,34 @@
+<h2 class="section-title">🔍 Search Clients</h2>
+<div class="search-section">
+  <!-- Search Inputs -->
+  <input type="number" [(ngModel)]="page" placeholder="Enter Page Number (e.g. 0)" />
+  <input type="number" [(ngModel)]="size" placeholder="Enter Page Size (e.g. 10)" />
+  <button (click)="fetchClients()">🔍 Search Clients</button>
+</div>
+
+<!-- Client Count -->
+<h3>Total Clients: {{ totalClients }}</h3>
+
+<!-- Display Clients -->
+<div *ngIf="clients && clients.length > 0; else noClients">
+  <div *ngFor="let client of clients" class="client-card">
+    <h4>{{ client.firstName }} {{ client.lastName }}</h4>
+    <p><strong>Email:</strong> {{ client.email }}</p>
+    <p><strong>Mobile Number:</strong> {{ client.mobileNumber }}</p>
+    <p><strong>Company Name:</strong> {{ client.companyName }}</p>
+    <p><strong>Address:</strong> {{ client.address }}</p>
+    <p><strong>Business Name:</strong> {{ client.businessName }}</p>
+    <p><strong>Postal Zip Code:</strong> {{ client.postalZipCode }}</p>
+    <p><strong>LinkedIn:</strong>
+      <a href="{{ client.linkedinProfileUrl }}" target="_blank">{{ client.linkedinProfileUrl }}</a>
+    </p>
+    <p><strong>PAN:</strong> {{ client.panNumber || 'Not Available' }}</p>
+    <p><strong>Registration:</strong> {{ client.specificRegistrationDetails }}</p>
+
+    <button (click)="deleteClient(client.id)">🗑 Delete</button>
+  </div>
+</div>
+
+<ng-template #noClients>
+  <p class="no-results">🚫 No clients found.</p>
+</ng-template>

@@ -1,0 +1,62 @@
+<div class="register-container">
+  <h3 class="title">Register Your Company</h3>
+
+  <div *ngIf="showSuccessMessage" class="alert alert-success alert-dismissible fade show" role="alert">
+    ✅ Company registered successfully!
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+
+  <div class="register-card">
+    <form [formGroup]="companyForm" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
+      <div class="form-row">
+        <input type="text" formControlName="name" placeholder="Company Name" class="form-input" required />
+        <input type="email" formControlName="email" placeholder="Email" class="form-input" required />
+      </div>
+
+      <div class="form-row">
+        <input type="tel" formControlName="companyPhone" placeholder="Phone Number" class="form-input" />
+        <input type="text" formControlName="address" placeholder="Address" class="form-input" />
+      </div>
+
+      <div class="form-row">
+        <select formControlName="clientId" class="form-input" required>
+          <option [ngValue]="null" disabled selected>Select Client</option>
+          <option *ngFor="let client of clients" [ngValue]="client.id">
+            {{ client.id }} - {{ client.firstName }} {{ client.lastName }}
+          </option>
+        </select>
+
+        <select formControlName="businessTypeId" class="form-input" required>
+          <option [ngValue]="null" disabled selected>Select Business Type</option>
+          <option *ngFor="let type of businessTypes" [ngValue]="type.id">
+            {{ type.id }} - {{ type.typeName }}
+          </option>
+        </select>
+      </div>
+
+      <div class="form-row">
+        <input type="text" formControlName="taxIdentificationNumber" placeholder="Tax Identification Number" class="form-input" />
+        <input type="text" formControlName="taxPayer" placeholder="Tax Payer" class="form-input" />
+      </div>
+
+      <div class="form-row">
+        <input type="text" formControlName="cinNo" placeholder="CIN Number" class="form-input" />
+        <input type="text" formControlName="registrationNo" placeholder="Registration Number" class="form-input" />
+      </div>
+
+      <div class="form-row">
+        <input type="text" formControlName="website" placeholder="Website" class="form-input" />
+        <input type="text" formControlName="adminUserName" placeholder="Admin Username" class="form-input" />
+      </div>
+
+      <div class="form-row">
+        <input type="password" formControlName="password" placeholder="Password" class="form-input" />
+      </div>
+
+      <div class="form-row justify-end">
+        <a href="#" class="forget-password">Forgot Password?</a>
+        <button type="submit" class="submit-button" [disabled]="companyForm.invalid"> Register</button>
+      </div>
+    </form>
+  </div>
+</div>
