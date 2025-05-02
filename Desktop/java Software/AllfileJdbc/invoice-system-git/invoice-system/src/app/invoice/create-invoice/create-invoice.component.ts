@@ -5,7 +5,6 @@ import { ClientService } from '../service/client.service';
 import { CompanyService } from '../service/company.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
-
 @Component({
   selector: 'app-create-invoice',
   templateUrl: './create-invoice.component.html',

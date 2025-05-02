@@ -10,6 +10,7 @@ import { SummaryCardsComponent } from './summary-cards/summary-cards.component';
 import { CashFlowComponent } from './cash-flow/cash-flow.component';
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { ExpensesWidgetComponent } from './expenses-widget/expenses-widget.component';
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
@@ -27,6 +28,7 @@ import { ExpensesWidgetComponent } from './expenses-widget/expenses-widget.compo
     NgChartsModule,
     HttpClientModule,
     NgApexchartsModule
+   
   ]
 })
 export class DashboardModule { }

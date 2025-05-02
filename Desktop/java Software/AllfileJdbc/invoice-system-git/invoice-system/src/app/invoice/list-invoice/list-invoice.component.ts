@@ -17,7 +17,7 @@ export class InvoiceListComponent implements OnInit {
   paymentStatusFilter = '';
   searchCustomerName='';
 
-  paymentStatusOptions = ['PAID', 'UNPAID', 'PENDING'];
+  paymentStatusOptions = ['PAID', 'OVERDUE', 'PENDING'];
 
   constructor(private invoiceService: InvoiceService) {}
 
@@ -63,8 +63,8 @@ export class InvoiceListComponent implements OnInit {
     switch (status) {
       case 'PAID':
         return 'status-paid';
-      case 'UNPAID':
-        return 'status-unpaid';
+      case 'OVERDUE':
+        return 'status-overdue';
       case 'PENDING':
         return 'status-pending';
       default:

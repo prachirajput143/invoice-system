@@ -3,6 +3,19 @@
     padding: 20px;
     background: #f5f6fa;
   }
+  .charts-row {
+    display: flex;
+    gap: 20px;
+  
+    app-cash-flow {
+      flex: 2;
+    }
+  
+    app-expenses {
+      flex: 1;
+      margin-top: -50px; // Shift slightly up (adjust as needed)
+    }
+  }
   
   /* 🔹 Navbar Styling */
 .navbar {
@@ -265,6 +278,7 @@
           color: #ef4444;
         }
       }
+      
     }
   }
   

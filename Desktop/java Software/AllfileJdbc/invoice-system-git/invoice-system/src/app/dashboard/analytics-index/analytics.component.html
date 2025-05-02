@@ -1,22 +1,26 @@
 <div class="analytics-container">
     
   <!-- Navigation Bar -->
-      <nav class="navbar">
-        <div class="logo">INVOICE PRO</div>
-        <ul class="nav-links">
-          <li><a routerLink="/dashboard/home">Home</a></li>
-          <li><a routerLink="/dashboard">Dashboard</a></li>
-          <li><a routerLink="/dashboard/analytics">Analytics</a></li>
-          <li><a routerLink="/dashboard/invoice/create">Invoices</a></li>
-          <li><a routerLink="/dashboard/edit">Edit</a></li>
-          <li><a routerLink="/dashboard/report">Report</a></li>
+  <nav class="navbar">
+    <div class="logo">INVOICE PRO</div>
+    <ul class="nav-links">
+      <li><a href="/dashboard">Home</a></li>
+      <li><a href="/dashboard">Dashboard</a></li>
+      <li><a href="/dashboard/analytics">Analytics</a></li>
+      <li class="dropdown">
+        <a href="/invoice/create">Invoice</a>
+        <ul class="dropdown-content">
+          <li><a href="/invoice/list">List</a></li>
+          <li><a href="/invoice/edit">Edit</a></li>
         </ul>
-        <div class="user-section">
-          <input type="text" placeholder="Search..." class="search-bar" />
-          <span class="theme-toggle">🌙</span>
-        </div>
-      </nav>
-
+      </li>
+      <li><a routerLink="/dashboard/report">Report</a></li>
+    </ul>
+    <div class="user-section">
+      <input type="text" placeholder="Search..." class="search-bar" />
+      <span class="theme-toggle">🌙</span>
+    </div>
+  </nav>
   <!-- 🔹 Summary Cards -->
   <div class="summary-cards">
     <div class="card"><h4>Total Invoices</h4><p>1,200</p></div>

@@ -1,44 +1,67 @@
-<div class="expense-card">
-    <div class="header">
-      <h3>Expenses</h3>
-      <select>
-        <option>This week</option>
-        <option>Last week</option>
-      </select>
-    </div>
-  
+<div class="expenses-card">
+  <div class="header">
+    <h4>Expenses</h4>
+    <select>
+      <option>This week</option>
+      <option>Last week</option>
+    </select>
+  </div>
+
+  <div class="radial-chart">
     <apx-chart
-      [series]="gaugeChart.series"
-      [chart]="gaugeChart.chart"
-      [plotOptions]="gaugeChart.plotOptions"
-      [fill]="gaugeChart.fill"
-      [stroke]="gaugeChart.stroke"
-      [labels]="gaugeChart.labels"
+      [series]="[78]"
+      [chart]="{ type: 'radialBar', height: 200 }"
+      [plotOptions]="{
+        radialBar: {
+          hollow: { size: '60%' },
+          track: { background: '#eee' },
+          dataLabels: {
+            value: { fontSize: '20px', show: true },
+            name: { show: false }
+          }
+        }
+      }"
+      [labels]="['Progress']"
+      [colors]="['#8B5CF6']"
     ></apx-chart>
-  
-    <div class="center-text">
-      <h2>${{ value }}</h2>
-      <p>All Total</p>
+    <p class="total-amount">23,316</p>
+    <p class="label">All Total</p>
+  </div>
+
+  <div class="profit-box">
+    <div>
+      <h5>Taxable Profit</h5>
+      <p>12,625</p>
     </div>
-  
-    <div class="taxable-profit">
-      <h4>Taxable Profit</h4>
-      <div class="amount">${{ taxableProfit }}</div>
-      <span class="badge green">+2.31%</span>
-    </div>
-  
-    <div class="mini-cards">
-      <div class="mini-card" *ngFor="let stat of miniStats">
-        <div class="left">
-          <p>{{ stat.title }}</p>
-          <strong>${{ stat.value }}</strong>
-        </div>
-        <div class="right">
-          <span class="badge" [style.background]="stat.color">{{ stat.trend }}</span>
-          <!-- Replace with actual mini-chart -->
-          <small>[Mini Chart]</small>
-        </div>
+    <div class="growth-tag">+2.31%</div>
+  </div>
+
+  <div class="mini-stats">
+    <div class="stat">
+      <span class="dot income"></span>
+      <div>
+        <small>Total Income</small>
+        <strong>23,316</strong>
       </div>
+      <span class="percentage orange">+2.3%</span>
+    </div>
+
+    <div class="stat">
+      <span class="dot outcome"></span>
+      <div>
+        <small>Total Outcome</small>
+        <strong>23,316</strong>
+      </div>
+      <span class="percentage red">-1.1%</span>
+    </div>
+
+    <div class="stat">
+      <span class="dot profit"></span>
+      <div>
+        <small>Taxable Profit</small>
+        <strong>25,316</strong>
+      </div>
+      <span class="percentage purple">+3.2%</span>
     </div>
   </div>
-  
+</div>
