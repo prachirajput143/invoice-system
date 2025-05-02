@@ -12,30 +12,32 @@
       {{ client.firstName }} {{ client.lastName }} {{ client.id }}
     </option>
   </select>
+
   <label for="client">Select Company:</label>
 
-  <select formControlName="companyId" class="form-control" *ngIf="companies?.length">
+  <select formControlName="companyId" class="form-control">
     <option value="">-- Select Company --</option>
     <option *ngFor="let company of companies" [value]="company.id">
       {{ company.name }}  {{ company.id }}
 
     </option>
   </select>
-
   
+    
       <label>Status:</label>
       <input type="text" formControlName="status">
   
-      <label>Payment Instructions</label>
-      <input type="date" formControlName="paymentInstructions">
-  
-      <label>Total Amount:</label>
-      <input type="number" formControlName="totalAmount">
+      <label>Total Amount</label>
+      <input type="totalAmount" formControlName="totalAmount">
   
       <label>Validity Period:</label>
       <input type="number" formControlName="validityPeriod">
   
-           <button type="submit" [disabled]="isLoading">💾 Save Invoice</button>
+      <label>paymentInstructions:</label>
+      <input type="number" formControlName="paymentInstructions">
+  
+    
+      <button type="submit" [disabled]="isLoading">💾 Save Invoice</button>
   
       <p *ngIf="successMessage" style="color: green;">{{ successMessage }}</p>
       <p *ngIf="errorMessage" style="color: red;">{{ errorMessage }}</p>

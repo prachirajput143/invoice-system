@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ProductInvoiceService } from '../../services/product-service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-update-invoice',
@@ -9,41 +9,139 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./update-invoice.component.css'],
   standalone: false
 })
-export class ProductUpdateInvoiceComponent implements OnInit {
-  updateForm!: FormGroup;
-  invoiceId!: number; // 🔹 Invoice ID store karne ke liye variable
-  invoiceData: any = {};  // ✅ Corrected invoices property
+export class ProductInvoiceUpdateComponent implements OnInit {
+  invoiceForm: FormGroup;
+  invoiceFound = false;
+  showSuccessMessage = false;
+  showErrorMessage = false;
+  allInvoices: any[] = [];
+  page: number = 0;
+  size: number = 100;
+  totalInvoices: number = 0;
 
   constructor(
     private fb: FormBuilder,
-    private productService: ProductInvoiceService,
-    private route: ActivatedRoute,
+    private invoiceService: ProductInvoiceService,
     private router: Router
-  ) {}
-  ngOnInit() {
-    console.log('Route Snapshot:', this.route.snapshot.paramMap);
+  ) {
+    this.invoiceForm = this.fb.group({
+      id: [''],
+      totalAmount: [0],
+      invoiceNumber: [''],
+      subTotal: [0],
+      discount: [0],
+      tax: [0],
+      dueDate: [''],
+      grandTotal: [0],
+      quantity: [0],
+      customerEmail: [''],
+      customerPhone: [''],
+      customerName: [''],
+      paid: [0],
+      balance: [0],
+      category: [''],
+      note: [''],
+      paymentStatus: [''],
+      paymentMethod: ['']
+    });
+  }
+
+  ngOnInit(): void {
+    this.fetchInvoicesAndLoadFirst();
+  }
+
+  fetchInvoicesAndLoadFirst(): void {
+    this.invoiceService.findAllInvoices(this.page, this.size).subscribe({
+      next: (response: any) => {
+        console.log('Invoice response:', response);
+
+        if (response.status === 'success') {
+          this.allInvoices = response.data;
+          this.totalInvoices = this.allInvoices.length;
+
+          if (this.allInvoices.length > 0) {
+            const firstInvoiceId = this.allInvoices[0].id;
+            this.loadInvoiceById(firstInvoiceId);
+          }
+        } else {
+          console.error('Invoice fetch failed:', response.message);
+          this.allInvoices = [];
+        }
+      },
+      error: (err: any) => {
+        console.error('HTTP Error fetching invoices:', err);
+        this.allInvoices = [];
+      }
+    });
+  }
+
+  loadInvoiceById(invoiceId: number): void {
+    this.invoiceService.findAllInvoices(this.page, this.size).subscribe({
+      next: (response: any) => {
+        // Ensure it's an array
+        if (Array.isArray(response)) {
+          this.allInvoices = response;
+        } else if (Array.isArray(response.data)) {
+          this.allInvoices = response.data;
+        } else {
+          this.allInvoices = []; // Fallback to empty array
+          console.error("Invalid invoice data format", response);
+        }
   
-    const id = this.route.snapshot.paramMap.get('id');
-    console.log('Extracted ID:', id); // ✅ Check ID value in console
+        this.totalInvoices = this.allInvoices.length;
   
-    if (id) {
-      this.invoiceId = Number(id);
-    } else {
-      console.error('Error: ID not received in Update Component!'); // ⚠ Debugging Error
-    }
+        if (this.allInvoices.length > 0) {
+          // Ensure that quantity is never null
+          const invoice = this.allInvoices.find(invoice => invoice.id === invoiceId);
+          if (invoice) {
+            invoice.quantity = invoice.quantity ?? 0;  // Set default value if null
+            this.invoiceForm.patchValue(invoice);  // Populate form
+          }
+        }
+      },
+      error: (err) => {
+        console.error('Error fetching invoices:', err);
+      }
+    });
   }
   
-  updateInvoice() {
-    if (!this.invoiceId) {
-      console.error('Invoice ID is undefined! Cannot update.');
-      return;
+  onInvoiceSelect(event: Event): void {
+    this.showSuccessMessage = false;
+    this.showErrorMessage = false;
+    const target = event.target as HTMLSelectElement;
+    const invoiceId = Number(target.value);
+    if (invoiceId) {
+      this.loadInvoiceById(invoiceId);
     }
+  }
 
-    this.productService.updateProduct(this.invoiceData, this.invoiceId).subscribe((response) => {
-      console.log('Invoice Updated Successfully:', response);
-      this.router.navigate(['/invoices']); // ✅ Redirect to Invoice List after update
-    }, (error) => {
-      console.error('Error updating invoice:', error);
-    });
+  onSubmit(): void {
+    this.showSuccessMessage = false;
+    this.showErrorMessage = false;
+
+    if (this.invoiceForm.valid) {
+      const id = this.invoiceForm.value.id;
+      this.invoiceService.updateProduct(id, this.invoiceForm.value).subscribe({
+        next: () => {
+          this.showSuccessMessage = true;
+          setTimeout(() => {
+            this.showSuccessMessage = false;
+            this.reloadPage();
+          }, 3000);
+        },
+        error: (err) => {
+          console.error('Update error:', err);
+          this.showErrorMessage = true;
+          setTimeout(() => (this.showErrorMessage = false), 3000);
+        }
+      });
+    } else {
+      this.showErrorMessage = true;
+      setTimeout(() => (this.showErrorMessage = false), 3000);
+    }
+  }
+
+  reloadPage(): void {
+    window.location.reload();
   }
 }

@@ -28,12 +28,14 @@
       <tbody>
           <tr *ngFor="let invoice of invoices">
               <td>{{ invoice.id }}</td>
-              <td>{{ invoice.buyerDetails }}</td>
-              <td>{{ invoice.orderNumber }}</td>
+              <td>{{ invoice.invoiceNumber }}</td>
+              <td>{{ invoice.totalAmount }}</td>
               <td> 
                   <!-- ✅ Corrected: Removed Extra <td> -->
-                    <button (click)="findById(invoice.id)" class="btn btn-primary">Update</button>
-                    <button (click)="deleteInvoice(invoice.id)" class="delete-btn">🗑 Delete</button>
+                    <button class="btn btn-primary" [routerLink]="['/product/product-update', invoice.id]">
+                        Update
+                      </button>
+              <button (click)="deleteInvoice(invoice.id)" class="delete-btn">🗑 Delete</button>
               </td>
           </tr>
       </tbody>

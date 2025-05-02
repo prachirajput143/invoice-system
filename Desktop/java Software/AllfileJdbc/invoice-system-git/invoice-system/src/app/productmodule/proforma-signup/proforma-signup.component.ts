@@ -1,14 +1,13 @@
-import { HttpClient } from "@angular/common/http";
-import { ClientService } from "../../services/client-service";
-import { CompanyService } from "../../services/company-service";
-import { ProformaInvoiceService } from "../../services/proforma-service";
-import { FormBuilder, FormGroup } from "@angular/forms";
 import { Component } from '@angular/core';
-
+import { ProformaInvoiceService } from '../../services/proforma-service';
+import { CompanyService } from '../../services/company-service';
+import { ClientService } from '../../services/client-service';
+import { HttpClient } from '@angular/common/http';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-proforma-signup',
-  standalone: false,
+standalone:false,
   templateUrl: './proforma-signup.component.html',
   styleUrl: './proforma-signup.component.css'
 })
@@ -17,7 +16,7 @@ export class ProformaSignupComponent {
   clients: any[] = [];
   companies: any[] = [];
   successMessage = '';
-  errorMessage: string = '';
+  errorMessage = '';
   isLoading = false;
 
   constructor(
@@ -26,12 +25,16 @@ export class ProformaSignupComponent {
     private clientService: ClientService,
     private companyService: CompanyService,
     private service: ProformaInvoiceService
-  ) {
+  )
+  
+ 
+{
     this.invoiceForm = this.fb.group({
-      paymentInstructions: [''],
+      invoiceNumber: [''],
       status: [''],
-      totalAmount: [''],
-      validityPeriod: [''],
+      totalAmount: [''], 
+      validityPeriod: [''],// ✅ Correct spelling
+      paymentInstructions: [''],
       companyId: [null],
       clientId: [null]
     });
@@ -56,14 +59,16 @@ export class ProformaSignupComponent {
   loadCompanies() {
     this.companyService.getAllCompanies(0, 100).subscribe({
       next: (res: { data: any[] }) => {
+        console.log("🚀 Company API Response:", res);  // 👈 log the full response
         this.companies = res.data;
+        console.log("✅ Companies loaded:", this.companies);  // 👈 log after assignment
       },
       error: (err) => {
         console.error("❌ Error loading companies:", err);
       }
     });
   }
-
+  
   saveInvoice(): void {
     this.successMessage = '';
     this.errorMessage = '';
@@ -92,3 +97,5 @@ export class ProformaSignupComponent {
     });
   }
 }
+
+

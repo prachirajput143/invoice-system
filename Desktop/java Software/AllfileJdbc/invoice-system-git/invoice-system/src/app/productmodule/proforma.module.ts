@@ -14,22 +14,23 @@ import { ProformaFindallComponent } from "./proforma-findall/proforma-findall.co
   declarations: [
     ProformaSignupComponent,
     ProformaFindbyidComponent,
-    ProformaFindallComponent
-  
-  
+    ProformaFindallComponent   
+   
   ],
   imports: [
     CommonModule,
     FormsModule,  // ✅ Ensure FormsModule is imported
     ReactiveFormsModule, // ✅ Ensure ReactiveFormsModule is imported
     HttpClientModule,
-    ProformaRoutingModule
+    ProformaRoutingModule,
+    RouterModule
+    
     
   ],
   providers: [],
 })
 export class ProformaModule {
   constructor() {
-    console.log("Proforma Module Loaded");
+    console.log("proforma Module Loaded");
   }
 }

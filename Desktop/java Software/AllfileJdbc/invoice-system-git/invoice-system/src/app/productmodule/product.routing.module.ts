@@ -3,14 +3,14 @@ import { RouterModule, Routes } from "@angular/router";
 import { ProductsignupComponent } from "./productsignup/productsignup.component";
 import { ProductFindallinvoiceComponent } from "./product-findallinvoice/product-findallinvoice.component";
 import { ProductFindByIdComponent } from "./product-find-by-id/product-find-by-id.component";
-import { ProductUpdateInvoiceComponent } from "./update-invoice/update-invoice.component";
 import { ServiceSignupComponent } from "./service-signup/service-signup.component";
+import { ProductInvoiceUpdateComponent } from "./update-invoice/update-invoice.component";
 
 const routes: Routes = [
   { path: 'product-signup', component: ProductsignupComponent }, // Create Invoice Page
   { path: 'product-findbyid', component: ProductFindByIdComponent }, // Find Invoice Page
   { path: 'product-findall', component: ProductFindallinvoiceComponent } ,
-  { path: 'product-update', component: ProductUpdateInvoiceComponent }
+  { path: 'product-update' , component: ProductInvoiceUpdateComponent }
 
   
 ];
