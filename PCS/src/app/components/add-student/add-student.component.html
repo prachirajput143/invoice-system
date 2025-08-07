@@ -1,0 +1,16 @@
+<div class="form-container">
+  <form #studentForm="ngForm" (ngSubmit)="onSubmit(studentForm)">
+    <h2>Add New Student</h2>
+
+    <label for="name">Full Name</label>
+    <input type="text" id="name" name="name" [(ngModel)]="student.name" required placeholder="Enter full name" />
+
+    <label for="age">Age</label>
+    <input type="number" id="age" name="age" [(ngModel)]="student.age" required placeholder="Enter age" />
+
+    <label for="email">Email</label>
+    <input type="email" id="email" name="email" [(ngModel)]="student.email" required placeholder="Enter email" />
+
+    <button type="submit">Add Student</button>
+  </form>
+</div>
